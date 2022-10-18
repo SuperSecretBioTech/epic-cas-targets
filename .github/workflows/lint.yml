@@ -1,0 +1,23 @@
+name: CI for Epic Bio
+# run on all branches github actions
+on: [push, pull_request]
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+  
+jobs:
+  frontend_compile:
+    runs-on: ubuntu-latest
+    steps:      
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 6.0.2
+      - name: Install deps
+        run: yarn install
+      - name: Run Prettier
+        run: yarn run format
+      - name: Run ESLint
+        run: yarn run lint
+      - name: Build project
+        run: yarn run build
