@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
+
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -10,7 +11,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ...colors,
         brand: {
           50: "#f2f9ff",
           100: "#e6f3ff",
