@@ -11,10 +11,13 @@
     "format:fix": "prettier \"**/*.+(js|jsx|ts|tsx|json|css|md)\" --config package.json --write"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@ninjha01/nitro-ui": "^0.0.3",
+    "import": "^0.0.6",
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.4",
     "react-query": "^3.39.3",
     "zod": "^3.20.6"
   },

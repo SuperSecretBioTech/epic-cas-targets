@@ -15,8 +15,6 @@ export const loadOnTargetData = async (): Promise<TableData[]> => {
       .map((offTarget) => TableData.parse(offTarget))
       .slice(0, 10);
   } catch (err) {
-    console.error("ERR", err);
-    throw err;
     throw new Error(
       "Error loading on target file from " + dataDirectory + "/on_target.csv"
     );
@@ -31,9 +29,10 @@ export const loadOffTargetData = async (): Promise<TableData[]> => {
       "utf8"
     );
     const offTargetJson = parseToJSON(fileContents.split("\n"));
-    return offTargetJson.map((offTarget) => TableData.parse(offTarget));
+    return offTargetJson
+      .map((offTarget) => TableData.parse(offTarget))
+      .slice(0, 10);
   } catch (err) {
-    console.error(err);
     throw new Error("Error loading off target file");
   }
 };

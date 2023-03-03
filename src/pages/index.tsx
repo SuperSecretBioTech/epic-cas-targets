@@ -32,15 +32,30 @@ const Home: NextPage = () => {
 
 export default Home;
 
+import { useForm } from "react-hook-form";
 function FormInput() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+  console.log(errors);
+
   return (
-    <div className="rounded-lg bg-white px-5 py-6 shadow dark:bg-zinc-600 sm:px-6 ">
-      <div className="grid h-96 content-center rounded-lg border-4 border-dashed border-gray-200">
-        <h1 className="text-center text-7xl font-semibold text-zinc-300">
-          Form Inputs
-        </h1>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <select {...register("Target GENE", { required: true })}>
+        <option value="X">X</option>
+        <option value="Y">Y</option>
+        <option value="Z">Z</option>
+      </select>
+      <select {...register("Suppresion/Activation", { required: true })}>
+        <option value="Suppresion">Suppresion</option>
+        <option value="Activation">Activation</option>
+      </select>
+
+      <input type="submit" />
+    </form>
   );
 }
 
