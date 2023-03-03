@@ -13,10 +13,12 @@ export async function getStaticProps() {
   };
 }
 
-const Results: NextPage<{ data: { onTarget: string; offTarget: string } }> = ({
+const Results: NextPage<{
+  data: { onTarget: TableData[]; offTarget: TableData[] };
+}> = ({
   data,
 }: {
-  data: { onTarget: string; offTarget: string };
+  data: { onTarget: TableData[]; offTarget: TableData[] };
 }) => {
   return (
     <Shell>
@@ -29,10 +31,7 @@ const Results: NextPage<{ data: { onTarget: string; offTarget: string } }> = ({
           </div>
         </div>
         <div className="rounded-xl bg-white px-8 py-6">
-          <h1 className="text-xl font-semibold text-zinc-300 md:text-4xl lg:text-5xl">
-            On-Target
-          </h1>
-          {JSON.stringify(data.onTarget)}
+          <Table data={data.onTarget} />
         </div>
       </div>
     </Shell>
