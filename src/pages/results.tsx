@@ -1,22 +1,22 @@
 import type { NextPage } from "next";
 import Shell from "../components/Shell";
 import { Table, TableData } from "../components/Table";
-import { generateMockTableData } from "../utils/tableUtils";
+import { loadOffTargetData, loadOnTargetData } from "./api/tableData";
 
 export async function getStaticProps() {
-  const data = generateMockTableData(100);
-
+  const onTarget = await loadOnTargetData();
+  const offTarget = await loadOffTargetData();
   return {
     props: {
-      data,
+      data: { onTarget, offTarget },
     },
   };
 }
 
-const Results: NextPage<{ data: TableData[] }> = ({
+const Results: NextPage<{ data: { onTarget: string; offTarget: string } }> = ({
   data,
 }: {
-  data: TableData[];
+  data: { onTarget: string; offTarget: string };
 }) => {
   return (
     <Shell>
@@ -29,7 +29,10 @@ const Results: NextPage<{ data: TableData[] }> = ({
           </div>
         </div>
         <div className="rounded-xl bg-white px-8 py-6">
-          <Table data={data} />
+          <h1 className="text-xl font-semibold text-zinc-300 md:text-4xl lg:text-5xl">
+            On-Target
+          </h1>
+          {JSON.stringify(data.onTarget)}
         </div>
       </div>
     </Shell>
