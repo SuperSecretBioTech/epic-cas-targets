@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Shell from "../components/Shell";
 
 const Home: NextPage = () => {
-  const router = useRouter();
   return (
     <Shell>
       <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
@@ -13,14 +12,6 @@ const Home: NextPage = () => {
           </div>
           <div className="col-span-12 lg:col-span-8">
             <FormInput />
-            <button
-              className=" w-full rounded-xl border border-fuchsia-600 px-6 py-3 text-center text-fuchsia-600 transition duration-300 ease-in-out hover:bg-fuchsia-600 hover:text-white"
-              onClick={() => {
-                router.push("/results");
-              }}
-            >
-              Find Targets
-            </button>
           </div>
         </div>
       </div>
@@ -31,16 +22,29 @@ const Home: NextPage = () => {
 export default Home;
 
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 function FormInput() {
+  const GENES = ["ASCL1", "BDNF", "AHNAK2", "SERPINA1", "PRPF31"];
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+    watch,
+    formState: { errors, isDirty, isValid },
+  } = useForm({
+    defaultValues: {
+      "Target Gene": GENES[0],
+      Genome: "Mouse",
+      "Suppression/Activation": "Suppression",
+    },
+  });
+  const router = useRouter();
+  const onSubmit = (data: any) => {
+    console.log("submitted", data);
+    router.replace("/results");
+  };
+  console.error(errors);
+  useEffect(function onSubmit() {}, [watch]);
 
-  const GENES = ["ASCL1", "BDNF", "AHNAK2", "SERPINA1", "PRPF31"];
   return (
     <>
       <div className="mt-10 sm:mt-0">
@@ -87,12 +91,12 @@ function FormInput() {
                         Effect
                       </label>
                       <select
-                        {...register("Suppresion/Activation", {
+                        {...register("Suppression/Activation", {
                           required: true,
                         })}
                         className="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6"
                       >
-                        <option value="Suppresion">Suppresion</option>
+                        <option value="Suppression">Suppression</option>
                         <option value="Activation">Activation</option>
                       </select>
                     </div>
@@ -110,18 +114,18 @@ function FormInput() {
                         className="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6"
                         disabled
                       >
-                        <option value="Mouse">Suppresion</option>
-                        <option value="Human">Activation</option>
+                        <option value="Mouse">Mouse</option>
+                        <option value="Human">Human</option>
                       </select>
                     </div>
                   </div>
                 </div>
                 <div className="bg-zinc-50 px-4 py-3 text-right sm:px-6">
                   <button
-                    type="submit"
-                    className="inline-flex justify-center rounded-md bg-fuchsia-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-500"
+                    className="inline-flex justify-center rounded-md bg-fuchsia-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-fuchsia-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-500 disabled:cursor-not-allowed disabled:opacity-50"
+                    disabled={isDirty && !isValid}
                   >
-                    Save
+                    Find Target Sites
                   </button>
                 </div>
               </div>

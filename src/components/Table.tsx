@@ -19,8 +19,9 @@ export const Table = ({ data }: { data: TableData[] }) => {
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">Results</h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the users in your account including their name, title,
-            email and role.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
+            nunc justo. Ut vel magna enim. Sed sit amet purus eget purus
+            accumsan dignissim.
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, BeakerIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { classNames } from "@ninjha01/nitro-ui";
 
-const navigation = [{ name: "Home", href: "#", current: true }];
+const navigation = [{ name: "Home", href: "/", current: true }];
 
 const Shell = ({ children }: { children: React.ReactNode }) => {
   return (
