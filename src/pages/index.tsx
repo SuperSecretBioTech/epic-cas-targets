@@ -100,24 +100,6 @@ function FormInput() {
                         <option value="Activation">Activation</option>
                       </select>
                     </div>
-                    <div className="col-span-6 sm:col-span-3">
-                      <label
-                        htmlFor="Genome"
-                        className="block text-sm font-medium leading-6 text-zinc-900"
-                      >
-                        Genome
-                      </label>
-                      <select
-                        {...register("Genome", {
-                          required: true,
-                        })}
-                        className="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6"
-                        disabled
-                      >
-                        <option value="Mouse">Mouse</option>
-                        <option value="Human">Human</option>
-                      </select>
-                    </div>
                   </div>
                 </div>
                 <div className="bg-zinc-50 px-4 py-3 text-right sm:px-6">
