@@ -17,7 +17,9 @@ export const Table = ({ data }: { data: TableData[] }) => {
     <div className="px-4 sm:px-6 lg:px-8 ">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900">Results</h1>
+          <h1 className="text-xl font-semibold text-gray-900">
+            Results: Suppression
+          </h1>
           <p className="mt-2 text-sm text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
             nunc justo. Ut vel magna enim. Sed sit amet purus eget purus
