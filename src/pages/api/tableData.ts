@@ -1,6 +1,31 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { z } from "zod";
 import { TableData } from "../../components/Table";
+
+const dataSchema = z
+  .tuple([
+    z.string(),
+    z.number(),
+    z.number(),
+    z.enum(["+", "-"]),
+    z.string().regex(/^[ATCG]+$/),
+    z.string(),
+    z.string(),
+    z.string().regex(/^[ATCG]+$/),
+    z.string(),
+  ])
+  .transform((data) => ({
+    chr: data[0],
+    start: data[1],
+    end: data[2],
+    strand: data[3],
+    spacer: data[4],
+    num_mismatches: data[5],
+    edit_distance: data[6],
+    sequence: data[7],
+    geneId: data[8],
+  }));
 
 export const loadOnTargetData = async (): Promise<TableData[]> => {
   const dataDirectory = path.join(process.cwd(), "src/data");

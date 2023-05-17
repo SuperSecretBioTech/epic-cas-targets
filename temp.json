@@ -1,0 +1,57 @@
+[
+  [
+    { "stringValue": "chr1" } /* chr */,
+    { "longValue": 13477680 } /* start */,
+    { "longValue": 13477705 } /* end */,
+    { "stringValue": "+" } /* strand */,
+    { "stringValue": "AAATTAGCCAGGTGTGGTGG" } /* spacer */,
+    { "stringValue": "XM:i:0" } /* num_mismatches */,
+    { "stringValue": "NM:i:0" } /* edit distance */,
+    { "stringValue": "tttaaaaattagccaggtgtggtgg" } /* sequence */,
+    { "stringValue": "AHNAK2" } /* geneId */
+  ],
+  [
+    { "stringValue": "chr1" },
+    { "longValue": 145116683 },
+    { "longValue": 145116708 },
+    { "stringValue": "+" },
+    { "stringValue": "AAATTAGCCAGGTGTGGTGG" },
+    { "stringValue": "XM:i:0" },
+    { "stringValue": "NM:i:0" },
+    { "stringValue": "tttaaaaattagccaggtgtggtgg" },
+    { "stringValue": "AHNAK2" }
+  ],
+  [
+    { "stringValue": "chr1" },
+    { "longValue": 150674734 },
+    { "longValue": 150674759 },
+    { "stringValue": "+" },
+    { "stringValue": "AAATTAGCCAGGTGTGGTGG" },
+    { "stringValue": "XM:i:0" },
+    { "stringValue": "NM:i:0" },
+    { "stringValue": "tttaaaaattagccaggtgtggtgg" },
+    { "stringValue": "AHNAK2" }
+  ],
+  [
+    { "stringValue": "chr1" },
+    { "longValue": 150704590 },
+    { "longValue": 150704615 },
+    { "stringValue": "+" },
+    { "stringValue": "AAATTAGCCAGGTGTGGTGG" },
+    { "stringValue": "XM:i:0" },
+    { "stringValue": "NM:i:0" },
+    { "stringValue": "tttaaaaattagccaggtgtggtgg" },
+    { "stringValue": "AHNAK2" }
+  ],
+  [
+    { "stringValue": "chr1" },
+    { "longValue": 15838113 },
+    { "longValue": 15838138 },
+    { "stringValue": "+" },
+    { "stringValue": "AATTTTTTGTAGAGACAAGG" },
+    { "stringValue": "XM:i:0" },
+    { "stringValue": "NM:i:0" },
+    { "stringValue": "ttttaaattttttgtagagacaagg" },
+    { "stringValue": "AHNAK2" }
+  ]
+]
