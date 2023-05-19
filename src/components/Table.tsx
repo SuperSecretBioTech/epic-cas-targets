@@ -1,17 +1,7 @@
 import { z } from "zod";
+import { TableDataSchema } from "../schemas/dataSchema";
 
-export const TableData = z.object({
-  chr: z.coerce.string(),
-  start: z.coerce.number(),
-  end: z.coerce.number(),
-  strand: z.coerce.string(),
-  spacer: z.coerce.string(),
-  num_mismatches: z.coerce.string(), // encoded in some format
-  edit_distance: z.coerce.string(), // encoded in some format
-  sequence: z.coerce.string(),
-  geneID: z.coerce.string(),
-});
-export type TableData = z.infer<typeof TableData>;
+type TableData = z.infer<typeof TableDataSchema>;
 export const Table = ({ data }: { data: TableData[] }) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8 ">

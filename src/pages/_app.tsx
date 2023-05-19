@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient({
-    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+    defaultOptions: { queries: { refetchOnWindowFocus: false, retry: 3 } },
   });
   return (
     <QueryClientProvider client={queryClient}>

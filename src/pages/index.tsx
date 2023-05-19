@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import wretch from "wretch";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 import Shell from "../components/Shell";
 
 const Home: NextPage = () => {
@@ -21,10 +22,6 @@ const Home: NextPage = () => {
 
 export default Home;
 
-import { useForm } from "react-hook-form";
-import { useQuery } from "react-query";
-import { z } from "zod";
-import { dataSchema } from "../schemas/dataSchema";
 function FormInput() {
   const GENES = ["ASCL1", "BDNF", "AHNAK2", "SERPINA1", "PRPF31"];
   const {
@@ -38,11 +35,14 @@ function FormInput() {
       "Suppression/Activation": "Suppression",
     },
   });
+  const router = useRouter();
   const onSubmit = (data: any) => {
-    console.log("submitted", data);
+    const target_gene = data["Target Gene"];
+    const effect = data["Suppression/Activation"] === "Suppression" ? "-" : "+";
+    router.push({
+      pathname: `/results/${target_gene}_${effect}`,
+    });
   };
-  const { data } = useData({ target_gene: "ASCL1", effect: "+" });
-  console.log(data);
   return (
     <>
       <div className="mt-10 sm:mt-0">
@@ -134,27 +134,3 @@ function FormNav() {
     </div>
   );
 }
-
-const useData = ({
-  target_gene,
-  effect,
-}: {
-  target_gene: string;
-  effect: "+" | "-";
-}) => {
-  const fetchFunc = async () => {
-    const url = "/api/data";
-
-    const rawDataTypes = await wretch(url)
-      .post({
-        target_gene,
-        effect,
-      })
-      .json();
-    const parsed = dataSchema.parse(rawDataTypes);
-    return parsed;
-  };
-  return useQuery(["dataQuery", target_gene, effect], fetchFunc, {
-    refetchOnWindowFocus: false,
-  });
-};

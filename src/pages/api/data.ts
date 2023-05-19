@@ -15,7 +15,7 @@ export default async function handler(
   const url =
     "https://kqz0t8uh04.execute-api.us-west-2.amazonaws.com/default/cas-backend";
   const { target_gene, effect } = req.body;
-  console.table({ target_gene, effect });
+
   try {
     const rawData = await wretch(url)
       .post({
@@ -26,6 +26,7 @@ export default async function handler(
       })
       .json();
     const resParsed = responseSchema.safeParse(rawData);
+
     if (!resParsed.success) {
       console.log("Invalid response shape");
       console.log(resParsed.error);
@@ -34,6 +35,8 @@ export default async function handler(
         .status(500)
         .json({ error: "Invalid response shape received from lambda" });
     }
+    console.log(resParsed.data);
+
     const parsed = dataSchema.safeParse(resParsed.data);
     if (!parsed.success) {
       console.log(resParsed.data);
@@ -42,7 +45,8 @@ export default async function handler(
         .status(500)
         .json({ error: "Invalid data recieved from lambda" });
     }
-    return res.status(200).json(parsed);
+
+    return res.status(200).json(parsed.data);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error });
