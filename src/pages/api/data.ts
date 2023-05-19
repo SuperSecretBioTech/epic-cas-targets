@@ -3,11 +3,16 @@ import wretch from "wretch";
 import { z } from "zod";
 import { dataSchema } from "../../schemas/dataSchema";
 
-const responseSchema = z
-  .object({
-    body: z.string(),
-  })
-  .transform((data) => JSON.parse(data.body));
+const responseSchema = z.union([
+  z
+    .object({
+      body: z.string(),
+    })
+    .transform((data) => JSON.parse(data.body)),
+  z.object({
+    errorMessage: z.string(),
+  }),
+]);
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -26,14 +31,18 @@ export default async function handler(
       })
       .json();
     const resParsed = responseSchema.safeParse(rawData);
-
     if (!resParsed.success) {
       console.log("Invalid response shape");
       console.log(resParsed.error);
       console.log(rawData);
       return res
         .status(500)
-        .json({ error: "Invalid response shape received from lambda" });
+        .json({ error: "Unknown response received from lambda" });
+    }
+    if (resParsed.data.errorMessage) {
+      console.log("Error from lambda");
+      console.log(resParsed.data.errorMessage);
+      return res.status(500).json({ error: resParsed.data.errorMessage });
     }
     console.log(resParsed.data);
 
