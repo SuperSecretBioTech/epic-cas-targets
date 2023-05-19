@@ -4,12 +4,9 @@ import { z } from "zod";
 import { dataSchema } from "../../schemas/dataSchema";
 
 const responseSchema = z.union([
-  z
-    .object({
-      body: z.string(),
-    })
-    .transform((data) => JSON.parse(data.body)),
+  z.array(z.any()), // did we get data?
   z.object({
+    //  did we get an error?
     errorMessage: z.string(),
   }),
 ]);
@@ -18,16 +15,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const url =
-    "https://kqz0t8uh04.execute-api.us-west-2.amazonaws.com/default/cas-backend";
+    "https://vehbuyav4p4ats5tgvs7w7ruty0mixag.lambda-url.us-west-2.on.aws/";
   const { target_gene, effect } = req.body;
 
   try {
     const rawData = await wretch(url)
       .post({
-        body: JSON.stringify({
-          target_gene,
-          effect,
-        }),
+        target_gene,
+        effect,
       })
       .json();
     const resParsed = responseSchema.safeParse(rawData);
@@ -39,7 +34,7 @@ export default async function handler(
         .status(500)
         .json({ error: "Unknown response received from lambda" });
     }
-    if (resParsed.data.errorMessage) {
+    if ("errorMessage" in resParsed.data) {
       console.log("Error from lambda");
       console.log(resParsed.data.errorMessage);
       return res.status(500).json({ error: resParsed.data.errorMessage });
