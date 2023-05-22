@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+const colors = require("tailwindcss/colors");
 module.exports = {
   darkMode: "class",
   content: [
@@ -10,18 +10,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: "#f2f9ff",
-          100: "#e6f3ff",
-          200: "#c2e0ff",
-          300: "#9ecbff",
-          400: "#5a9eff",
-          500: "#1672ff",
-          600: "#1369e6",
-          700: "#0f56a3",
-          800: "#0b4270",
-          900: "#08324b",
-        },
+        noir: colors.zinc,
+        brand: colors.fuchsia,
       },
     },
   },

@@ -9,10 +9,10 @@ import { dataSchema, TableDataSchema } from "../../schemas/dataSchema";
 // matches ASCL1_+ or ASCL1_-
 const slugSchema = z
   .string()
-  .regex(/[0-9A-Z]_(\-|\+)/)
+  .regex(/[0-9A-Z-]_(Activation|\Suppression)/)
   .transform((data) => {
     return z
-      .tuple([z.string(), z.enum(["+", "-"] as const)])
+      .tuple([z.string(), z.enum(["Activation", "Suppression"])])
       .transform((data) => ({ target_gene: data[0], effect: data[1] }))
       .parse(data.split("_"));
   });
@@ -49,7 +49,7 @@ const TableViz = ({
   effect,
 }: {
   target_gene: string;
-  effect: "+" | "-";
+  effect: "Activation" | "Suppression";
 }) => {
   const { data, error, isFetching } = useData({ target_gene, effect });
   if (error) {
@@ -69,7 +69,7 @@ const useData = ({
   effect,
 }: {
   target_gene: string;
-  effect: "+" | "-";
+  effect: "Activation" | "Suppression";
 }) => {
   const fetchFunc = async () => {
     const url = "/api/data";
