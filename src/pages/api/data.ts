@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import wretch from "wretch";
 import { z } from "zod";
+import { GENES } from "../../data/genes";
 import { dataSchema } from "../../schemas/dataSchema";
 
 const responseSchema = z.union([
@@ -10,13 +11,24 @@ const responseSchema = z.union([
     errorMessage: z.string(),
   }),
 ]);
+const requestSchema = z.object({
+  target_gene: z.enum(GENES),
+  effect: z.enum(["Activation", "Suppression"]),
+});
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const url =
     "https://vehbuyav4p4ats5tgvs7w7ruty0mixag.lambda-url.us-west-2.on.aws/";
-  const { target_gene, effect } = req.body;
+  const parsed = requestSchema.safeParse(req.body);
+  if (!parsed.success) {
+    console.log("Invalid request body");
+    console.log(parsed.error);
+    return res.status(400).json({ error: parsed.error });
+  }
+  const { target_gene, effect } = parsed.data;
 
   try {
     const rawData = await wretch(url)

@@ -22497,4 +22497,4 @@ export const GENES = [
   "ZYX",
   "ZZEF1",
   "ZZZ3",
-];
+] as const;
