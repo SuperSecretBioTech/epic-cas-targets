@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        retry: 3,
+        retry: 0,
         cacheTime: 100,
         staleTime: 100,
       },

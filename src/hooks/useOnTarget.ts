@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import wretch from "wretch";
+import wretch, { WretchError } from "wretch";
 import { z } from "zod";
 import { TableDataSchema } from "../schemas/dataSchema";
 
@@ -12,13 +12,27 @@ export const useOnTarget = ({
 }) => {
   const fetchFunc = async () => {
     const url = "/api/data";
+    let rawData = null;
+    try {
+      rawData = await wretch(url)
+        .post({
+          target_gene,
+          effect,
+        })
+        .json();
+    } catch (err: any) {
+      const error = err as WretchError;
+      const errorSchema = z.string().transform((data) => {
+        const parsed = z.object({ error: z.string() }).parse(JSON.parse(data));
+        return parsed.error;
+      });
 
-    const rawData = await wretch(url)
-      .post({
-        target_gene,
-        effect,
-      })
-      .json();
+      const parsedError = errorSchema.safeParse(error.message);
+      if (!parsedError.success) {
+        throw new Error("An unknown error occured");
+      }
+      throw new Error(parsedError.data);
+    }
     const parsed = z.array(TableDataSchema).safeParse(rawData);
     if (!parsed.success) {
       console.error(parsed.error);

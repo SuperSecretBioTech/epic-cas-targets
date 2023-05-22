@@ -1,3 +1,4 @@
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { z } from "zod";
 import Shell from "../../components/Shell";
@@ -57,7 +58,27 @@ const TableViz = ({
     effect,
   });
   if (error) {
-    return <div>{JSON.stringify(error)} </div>;
+    console.error(error);
+    return (
+      <div className="text-red-400 flex w-full max-w-xl h-40 gap-2 items-center justify-center my-8 mx-auto">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="stroke-current flex-shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span className="text-xl">
+          Something went wrong! Please try again later.
+        </span>
+      </div>
+    );
   }
   if (isFetching) {
     return (
