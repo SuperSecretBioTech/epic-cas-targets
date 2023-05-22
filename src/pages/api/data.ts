@@ -43,7 +43,6 @@ export default async function handler(
     if (!resParsed.success) {
       console.log("Invalid response shape");
       console.log(resParsed.error);
-      console.log(rawData);
       return res
         .status(500)
         .json({ error: "Unknown response received from lambda" });
@@ -53,8 +52,6 @@ export default async function handler(
       console.log(resParsed.data.errorMessage);
       return res.status(500).json({ error: resParsed.data.errorMessage });
     }
-    console.log(resParsed.data);
-
     const parsed = dataSchema.safeParse(resParsed.data);
     if (!parsed.success) {
       console.log(resParsed.data);

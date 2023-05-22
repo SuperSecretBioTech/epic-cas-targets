@@ -1,23 +1,28 @@
-import { classNames, Toggle } from "@ninjha01/nitro-ui";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { z } from "zod";
 import Shell from "../../components/Shell";
 import { Table } from "../../components/Table";
-import { useData } from "../../hooks/useData";
+import { useOffTarget } from "../../hooks/useOfftarget";
 
 // matches ASCL1_+ or ASCL1_-
 const slugSchema = z
   .string()
-  .regex(/[0-9A-Z-]_(Activation|\Suppression)/)
+  .regex(/[0-9A-Z-]_(Activation|\Suppression)_[0-9A-Z-]/)
   .transform((data) => {
     return z
-      .tuple([z.string(), z.enum(["Activation", "Suppression"] as const)])
-      .transform((data) => ({ target_gene: data[0], effect: data[1] }))
+      .tuple([
+        z.string(),
+        z.enum(["Activation", "Suppression"] as const, z.string()),
+        z.string(),
+      ])
+      .transform((data) => ({
+        target_gene: data[0],
+        effect: data[1],
+        guide: data[2],
+      }))
       .parse(data.split("_"));
   });
 const Results = () => {
-  const [offTarget, setOffTarget] = useState(false);
   const router = useRouter();
   const rawSlug = router.query.query;
   const slug = slugSchema.safeParse(rawSlug);
@@ -25,7 +30,7 @@ const Results = () => {
     return <Shell>{JSON.stringify(slug.error)}.</Shell>;
   }
 
-  const { target_gene, effect } = slug.data;
+  const { target_gene, effect, guide } = slug.data;
 
   return (
     <Shell>
@@ -34,29 +39,14 @@ const Results = () => {
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
               <h1 className="text-xl font-semibold text-gray-900">
-                {target_gene} | {effect} |{" "}
-                {offTarget ? "Off Target" : "On Target"}
+                {target_gene} | {effect} | {guide}
               </h1>
             </div>
-            <span className="flex justify-center items-center gap-8 ">
-              <p
-                className={classNames(
-                  "font-semibold text-md",
-                  offTarget ? "text-fuchsia-500" : "text-gray-500"
-                )}
-              >
-                Off Target
-              </p>
-              <Toggle
-                onClick={() => setOffTarget(!offTarget)}
-                checked={offTarget}
-              />
-            </span>
           </div>
           <TableViz
             target_gene={slug.data.target_gene}
             effect={slug.data.effect}
-            offTarget={offTarget}
+            guide={slug.data.guide}
           />
         </section>
       </div>
@@ -67,16 +57,16 @@ const Results = () => {
 const TableViz = ({
   target_gene,
   effect,
-  offTarget,
+  guide,
 }: {
   target_gene: string;
   effect: "Activation" | "Suppression";
-  offTarget: boolean;
+  guide: string;
 }) => {
-  const { data, error, isFetching } = useData({
+  const { data, error, isFetching } = useOffTarget({
     target_gene,
     effect,
-    off_target: offTarget,
+    guide,
   });
   if (error) {
     return <div>{JSON.stringify(error)} </div>;

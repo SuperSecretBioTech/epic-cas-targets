@@ -10,34 +10,25 @@ const coreData = [
   z.object({ stringValue: z.string() }),
   z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
   z.object({ stringValue: z.string() }),
+  z.object({ booleanValue: z.boolean() }).optional(), // unused
+  z.object({ booleanValue: z.boolean() }).optional(), // unused
+  z.object({ doubleValue: z.number() }).optional(), // unused
 ] as const;
-export const dataSchema = z
-  .array(
-    z.union([
-      z.tuple([...coreData]),
-      z.tuple([
-        ...coreData,
-        z.object({ booleanValue: z.boolean() }).optional(), // unused
-        z.object({ booleanValue: z.boolean() }).optional(), // unused
-        z.object({ doubleValue: z.number() }).optional(), // unused
-      ]),
-    ])
+export const dataSchema = z.array(z.tuple([...coreData])).transform((data) =>
+  data.map((datum) =>
+    TableDataSchema.parse({
+      chr: datum[0].stringValue,
+      start: datum[1].longValue,
+      end: datum[2].longValue,
+      strand: datum[3].stringValue,
+      spacer: datum[4].stringValue.toUpperCase(),
+      num_mismatches: datum[5].stringValue,
+      edit_distance: datum[6].stringValue,
+      sequence: datum[7].stringValue.toUpperCase(),
+      num_off_targets: datum[11]?.doubleValue,
+    })
   )
-  .transform((data) =>
-    data.map((datum) =>
-      TableDataSchema.parse({
-        chr: datum[0].stringValue,
-        start: datum[1].longValue,
-        end: datum[2].longValue,
-        strand: datum[3].stringValue,
-        spacer: datum[4].stringValue.toUpperCase(),
-        num_mismatches: datum[5].stringValue,
-        edit_distance: datum[6].stringValue,
-        sequence: datum[7].stringValue.toUpperCase(),
-        geneId: datum[8].stringValue,
-      })
-    )
-  );
+);
 
 export const TableDataSchema = z.object({
   chr: z.string(),
@@ -45,8 +36,8 @@ export const TableDataSchema = z.object({
   end: z.number(),
   strand: z.string(),
   spacer: z.string(),
-  num_mismatches: z.string(), // encoded in some format
-  edit_distance: z.string(), // encoded in some format
+  // num_mismatches: z.string(), // encoded in some format
+  // edit_distance: z.string(), // encoded in some format
   sequence: z.string(),
-  geneId: z.string(),
+  num_off_targets: z.number().optional(),
 });

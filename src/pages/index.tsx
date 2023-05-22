@@ -35,7 +35,7 @@ function FormInput() {
   const router = useRouter();
   const onSubmit = () => {
     router.push({
-      pathname: `/results/${selectedGene}_${selectedEffect}`,
+      pathname: `/on_target/${selectedGene}_${selectedEffect}`,
     });
   };
   let selectedOptionIdx = 0;
