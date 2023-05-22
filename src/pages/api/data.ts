@@ -14,6 +14,7 @@ const responseSchema = z.union([
 const requestSchema = z.object({
   target_gene: z.enum(GENES),
   effect: z.enum(["Activation", "Suppression"]),
+  off_target: z.boolean(),
 });
 
 export default async function handler(
@@ -28,13 +29,14 @@ export default async function handler(
     console.log(parsed.error);
     return res.status(400).json({ error: parsed.error });
   }
-  const { target_gene, effect } = parsed.data;
+  const { target_gene, effect, off_target } = parsed.data;
 
   try {
     const rawData = await wretch(url)
       .post({
         target_gene,
         effect,
+        off_target,
       })
       .json();
     const resParsed = responseSchema.safeParse(rawData);

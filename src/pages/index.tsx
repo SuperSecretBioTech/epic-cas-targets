@@ -26,7 +26,9 @@ const Home: NextPage = () => {
 export default Home;
 
 function FormInput() {
-  const [selectedGene, setSelectedGene] = useState<string>(GENES[0]);
+  const [selectedGene, setSelectedGene] = useState<(typeof GENES)[number]>(
+    GENES[0]
+  );
   const [selectedEffect, setSelectedEffect] = useState<
     "Suppression" | "Activation"
   >("Activation");
@@ -78,8 +80,8 @@ function FormInput() {
                         id: gene,
                         label: gene,
                       }))}
-                      onSelect={(option: { id: string; label: string }) => {
-                        setSelectedGene(option.id);
+                      onSelect={(option) => {
+                        setSelectedGene(option.id as (typeof GENES)[number]);
                       }}
                       selectedOptionIdx={selectedOptionIdx}
                     />

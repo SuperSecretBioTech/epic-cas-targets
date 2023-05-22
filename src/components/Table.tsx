@@ -5,18 +5,6 @@ type TableData = z.infer<typeof TableDataSchema>;
 export const Table = ({ data }: { data: TableData[] }) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8 ">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900">
-            Results: Suppression
-          </h1>
-          <p className="mt-2 text-sm text-gray-700">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget
-            nunc justo. Ut vel magna enim. Sed sit amet purus eget purus
-            accumsan dignissim.
-          </p>
-        </div>
-      </div>
       <div className="mt-8 flex flex-col items-center">
         <div className="-my-2 -mx-4 sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle">
