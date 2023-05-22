@@ -56,7 +56,7 @@ const TableViz = ({
     return <div>{JSON.stringify(error)} </div>;
   }
   if (isFetching) {
-    return <progress className="progress w-56"></progress>;
+    return <progress className="progress progress-primary w-56"></progress>;
   }
   if (!data) {
     return <div> Got no Data </div>;

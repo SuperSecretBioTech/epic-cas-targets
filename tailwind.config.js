@@ -23,5 +23,20 @@ module.exports = {
   daisyui: {
     logs: false,
     theme: false,
+    themes: [
+      {
+        mytheme: {
+          primary: "#c026d3",
+          secondary: "#463AA2",
+          accent: "#C148AC",
+          neutral: "#021431",
+          "base-100": "#f3f4f6",
+          info: "#93E7FB",
+          success: "#81CFD1",
+          warning: "#EFD7BB",
+          error: "#E58B8B",
+        },
+      },
+    ],
   },
 };
