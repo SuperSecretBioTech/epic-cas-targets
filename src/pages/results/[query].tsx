@@ -1,10 +1,10 @@
+import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import wretch from "wretch";
-import { useRouter } from "next/router";
 import { z } from "zod";
 import Shell from "../../components/Shell";
 import { Table } from "../../components/Table";
-import { dataSchema, TableDataSchema } from "../../schemas/dataSchema";
+import { TableDataSchema } from "../../schemas/dataSchema";
 
 // matches ASCL1_+ or ASCL1_-
 const slugSchema = z
@@ -12,7 +12,7 @@ const slugSchema = z
   .regex(/[0-9A-Z-]_(Activation|\Suppression)/)
   .transform((data) => {
     return z
-      .tuple([z.string(), z.enum(["Activation", "Suppression"])])
+      .tuple([z.string(), z.enum(["Activation", "Suppression"] as const)])
       .transform((data) => ({ target_gene: data[0], effect: data[1] }))
       .parse(data.split("_"));
   });
@@ -56,7 +56,7 @@ const TableViz = ({
     return <div>{JSON.stringify(error)} </div>;
   }
   if (isFetching) {
-    return <div>Loading</div>;
+    return <progress className="progress w-56"></progress>;
   }
   if (!data) {
     return <div> Got no Data </div>;

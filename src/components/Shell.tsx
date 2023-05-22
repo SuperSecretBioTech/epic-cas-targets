@@ -9,7 +9,7 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="min-h-full">
         <Header />
-        <main className="-mt-32">
+        <main className="-mt-32 bg-gray-100">
           <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
             {children}
           </div>
