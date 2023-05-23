@@ -24,10 +24,16 @@ const DownloadButtons = ({
 
   return (
     <div className="btn-group">
-      <button className="btn btn-sm btn-outline" onClick={downloadCSV}>
+      <button
+        className="btn btn-sm btn-primary btn-outline"
+        onClick={downloadCSV}
+      >
         Download CSV
       </button>
-      <button className="btn btn-sm btn-outline" onClick={downloadJSON}>
+      <button
+        className="btn btn-sm btn-primary btn-outline"
+        onClick={downloadJSON}
+      >
         Download JSON
       </button>
     </div>

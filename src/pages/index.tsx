@@ -11,10 +11,7 @@ const Home: NextPage = () => {
     <Shell>
       <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-12 gap-8">
-          <div className="col-span-12 lg:col-span-4">
-            <FormNav />
-          </div>
-          <div className="col-span-12 lg:col-span-8">
+          <div className="col-span-12">
             <FormInput />
           </div>
         </div>
@@ -58,7 +55,9 @@ function FormInput() {
                 Search Terms
               </h3>
               <p className="mt-1 text-sm text-fuchsia-50">
-                This is a web tool for selecting target sites for CRISPR/CasMini
+                This is a web tool for selecting target sites for
+                CRISPR/CasMini. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Quas cupiditate laboriosam fugiat.
               </p>
             </div>
           </div>
