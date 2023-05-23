@@ -4,33 +4,21 @@ import Shell from "../../components/Shell";
 import { Table } from "../../components/Table";
 import { useOffTarget } from "../../hooks/useOfftarget";
 
-// matches ASCL1_+ or ASCL1_-
-const slugSchema = z
-  .string()
-  .regex(/[0-9A-Z-]_(Activation|\Suppression)_[0-9A-Z-]/)
-  .transform((data) => {
-    return z
-      .tuple([
-        z.string(),
-        z.enum(["Activation", "Suppression"] as const, z.string()),
-        z.string(),
-      ])
-      .transform((data) => ({
-        target_gene: data[0],
-        effect: data[1],
-        guide: data[2],
-      }))
-      .parse(data.split("_"));
-  });
+const slugSchema = z.string().regex(/[ATCG]+$/);
+
 const Results = () => {
   const router = useRouter();
-  const rawSlug = router.query.query;
+  const rawSlug = router.query.guide;
   const slug = slugSchema.safeParse(rawSlug);
+  if (rawSlug === undefined) {
+    return <Shell>No Guide provided</Shell>;
+  }
   if (!slug.success) {
-    return <Shell>{JSON.stringify(slug.error)}.</Shell>;
+    console.error(slug.error);
+    return <Shell>Invalid Guide: {rawSlug}</Shell>;
   }
 
-  const { target_gene, effect, guide } = slug.data;
+  const guide = slug.data;
 
   return (
     <Shell>
@@ -39,33 +27,19 @@ const Results = () => {
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
               <h1 className="text-xl font-semibold text-gray-900">
-                {target_gene} | {effect} | {guide}
+                Guide: {guide}
               </h1>
             </div>
           </div>
-          <TableViz
-            target_gene={slug.data.target_gene}
-            effect={slug.data.effect}
-            guide={slug.data.guide}
-          />
+          <TableViz guide={guide} />
         </section>
       </div>
     </Shell>
   );
 };
 
-const TableViz = ({
-  target_gene,
-  effect,
-  guide,
-}: {
-  target_gene: string;
-  effect: "Activation" | "Suppression";
-  guide: string;
-}) => {
+const TableViz = ({ guide }: { guide: string }) => {
   const { data, error, isFetching } = useOffTarget({
-    target_gene,
-    effect,
     guide,
   });
   if (error) {

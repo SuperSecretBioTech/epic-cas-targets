@@ -1,4 +1,3 @@
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { z } from "zod";
 import Shell from "../../components/Shell";
@@ -90,6 +89,7 @@ const TableViz = ({
   if (!data) {
     return <div> Got no Data </div>;
   }
+
   return <Table data={data} />;
 };
 

@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import wretch, { WretchError } from "wretch";
 import { z } from "zod";
-import { TableDataSchema } from "../schemas/dataSchema";
+import { onTargetOutputSchema } from "../schemas/dataSchema";
 
 export const useOnTarget = ({
   target_gene,
@@ -18,6 +18,7 @@ export const useOnTarget = ({
         .post({
           target_gene,
           effect,
+          query_type: "on_target",
         })
         .json();
     } catch (err: any) {
@@ -33,10 +34,10 @@ export const useOnTarget = ({
       }
       throw new Error(parsedError.data);
     }
-    const parsed = z.array(TableDataSchema).safeParse(rawData);
+    const parsed = z.array(onTargetOutputSchema).safeParse(rawData);
     if (!parsed.success) {
       console.error(parsed.error);
-      throw new Error("Couldn't parse api response");
+      throw new Error("Couldn't parse onTarget api response");
     }
     return parsed.data;
   };

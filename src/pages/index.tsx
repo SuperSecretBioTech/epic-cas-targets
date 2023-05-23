@@ -42,7 +42,6 @@ function FormInput() {
   if (selectedGene !== null) {
     const idx = GENES.indexOf(selectedGene);
     if (idx >= 0) {
-      console.debug("Setting selectedOptionIdx", idx);
       selectedOptionIdx = idx;
     } else {
       throw new Error("Invalid selectedGene");

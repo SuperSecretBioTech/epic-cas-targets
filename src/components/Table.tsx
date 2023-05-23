@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { z } from "zod";
 import { TableDataSchema } from "../schemas/dataSchema";
 
 type TableData = z.infer<typeof TableDataSchema>;
-export const Table = ({ data }: { data: TableData[] }) => {
+export const Table = ({ data }: { data: TableData }) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8 ">
       <div className="mt-8 flex flex-col items-center">
@@ -34,7 +35,16 @@ export const Table = ({ data }: { data: TableData[] }) => {
                           key={`row-${datumIdx}-${column}`}
                           className="border-b border-gray-200 py-3.5 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 lg:pl-8"
                         >
-                          {value}
+                          {column === "search" ? (
+                            <Link
+                              href={value.toString()}
+                              className="text-fuchsia-600 hover:text-fuchsia-500 underline"
+                            >
+                              Off-Target Sites
+                            </Link>
+                          ) : (
+                            <>{value.toString()}</>
+                          )}
                         </td>
                       ))}
                     </tr>

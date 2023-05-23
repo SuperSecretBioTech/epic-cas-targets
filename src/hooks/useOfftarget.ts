@@ -1,35 +1,26 @@
 import { useQuery } from "react-query";
 import wretch from "wretch";
 import { z } from "zod";
-import { TableDataSchema } from "../schemas/dataSchema";
+import { offTargetOutputSchema } from "../schemas/dataSchema";
 
-export const useOffTarget = ({
-  target_gene,
-  effect,
-  guide,
-}: {
-  target_gene: string;
-  effect: "Activation" | "Suppression";
-  guide: string;
-}) => {
+export const useOffTarget = ({ guide }: { guide: string }) => {
   const fetchFunc = async () => {
     const url = "/api/data";
 
     const rawData = await wretch(url)
       .post({
-        target_gene,
-        effect,
         guide,
+        query_type: "off_target",
       })
       .json();
-    const parsed = z.array(TableDataSchema).safeParse(rawData);
+    const parsed = z.array(offTargetOutputSchema).safeParse(rawData);
     if (!parsed.success) {
       console.error(parsed.error);
-      throw new Error("Couldn't parse api response");
+      throw new Error("Couldn't parse offTarget api response");
     }
     return parsed.data;
   };
-  return useQuery(["dataQuery", target_gene, effect, guide], fetchFunc, {
+  return useQuery(["dataQuery", guide], fetchFunc, {
     refetchOnWindowFocus: false,
   });
 };

@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import wretch, { WretchError } from "wretch";
 import { z } from "zod";
 import { GENES } from "../../data/genes";
-import { dataSchema } from "../../schemas/dataSchema";
+import { offTargetSchema, onTargetSchema } from "../../schemas/dataSchema";
+
 const errorSchema = z.object({
   json: z.object({
     error: z.object({
@@ -30,10 +31,17 @@ const responseSchema = z.union([
   }),
 ]);
 
-const requestSchema = z.object({
-  target_gene: z.enum(GENES),
-  effect: z.enum(["Activation", "Suppression"]),
-});
+const requestSchema = z.union([
+  z.object({
+    target_gene: z.enum(GENES),
+    effect: z.enum(["Activation", "Suppression"]),
+    query_type: z.literal("on_target"),
+  }),
+  z.object({
+    guide: z.string().regex(/^[ACGT]+$/),
+    query_type: z.literal("off_target"),
+  }),
+]);
 
 export default async function handler(
   req: NextApiRequest,
@@ -45,16 +53,32 @@ export default async function handler(
   if (!reqParsed.success) {
     return res.status(400).json({ error: reqParsed.error });
   }
-  const { target_gene, effect } = reqParsed.data;
 
+  const { query_type } = reqParsed.data;
+  let payload = null;
+  let parser = null;
+  if (query_type === "on_target") {
+    const { target_gene, effect } = reqParsed.data;
+    payload = {
+      target_gene,
+      effect,
+      query_type,
+    };
+    parser = onTargetSchema;
+  } else if (query_type === "off_target") {
+    const { guide } = reqParsed.data;
+    payload = {
+      guide,
+      query_type,
+    };
+    parser = offTargetSchema;
+  } else {
+    throw new Error("Invalid query type");
+  }
   let rawData = null;
+
   try {
-    rawData = await wretch(url)
-      .post({
-        target_gene,
-        effect,
-      })
-      .json();
+    rawData = await wretch(url).post(payload).json();
   } catch (err: any) {
     const error = err as WretchError;
     const errorSchema = z.string().transform((data) => {
@@ -62,9 +86,8 @@ export default async function handler(
       try {
         jsonParsed = JSON.parse(data);
       } catch {
-        return `Failed to parse error into json:  ${data}`;
+        return `Failed to parse error into json: ${data}`;
       }
-
       const parsed = z.object({ error: z.string() }).parse(jsonParsed);
       return parsed.error;
     });
@@ -74,7 +97,6 @@ export default async function handler(
     }
     return res.status(500).json({ error: parsedError.data });
   }
-
   const resParsed = responseSchema.safeParse(rawData);
   if (!resParsed.success) {
     return res
@@ -84,12 +106,10 @@ export default async function handler(
   if ("errorMessage" in resParsed.data) {
     return res.status(500).json({ error: resParsed.data.errorMessage });
   }
-  const dataParsed = dataSchema.safeParse(resParsed.data);
+  const dataParsed = parser.safeParse(resParsed.data);
   if (!dataParsed.success) {
-    console.log(resParsed.data);
     console.log(dataParsed.error);
     return res.status(500).json({ error: "Invalid data recieved from lambda" });
   }
-
   return res.status(200).json(dataParsed.data);
 }
