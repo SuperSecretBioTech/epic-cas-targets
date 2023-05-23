@@ -1,7 +1,19 @@
 import Link from "next/link";
+import { useState } from "react";
 import { OffTargetData, OnTargetData } from "../schemas/dataSchema";
 
+const MAX_MISMATCHES = 5000;
 export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
+  const [sortingOrder, setSortingOrder] = useState<"asc" | "desc">("asc");
+  const filteredData = data.filter((d) => d.num_off_targets <= MAX_MISMATCHES);
+  const sortedData = filteredData.sort((a, b) => {
+    if (sortingOrder === "asc") {
+      return (a.num_off_targets ?? 0) - (b.num_off_targets ?? 0);
+    } else {
+      return (b.num_off_targets ?? 0) - (a.num_off_targets ?? 0);
+    }
+  });
+
   return (
     <div className="flow-root">
       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -50,18 +62,21 @@ export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
                   className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Edit Distance
-                </th>{" "}
+                </th>
                 <th
                   scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Sequence
-                </th>{" "}
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 flex"
                 >
                   Number of Off-Targets
+                  <button
+                    type="button"
+                    className="btn btn-outline btn-xs self-end"
+                    onClick={() => {
+                      setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
+                    }}
+                  >
+                    {sortingOrder === "asc" ? "▲" : "▼"}
+                  </button>
                 </th>
                 <th
                   scope="col"
@@ -72,8 +87,8 @@ export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
               </tr>
             </thead>
             <tbody>
-              {data.map((datum) => (
-                <tr key={datum.chr}>
+              {sortedData.map((datum) => (
+                <tr key={`JSON.stringify(datum)`}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                     {datum.chr}
                   </td>
@@ -94,9 +109,6 @@ export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.edit_distance}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    {datum.sequence}
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.num_off_targets}
@@ -167,18 +179,12 @@ export const OffTargetTable = ({ data }: { data: OffTargetData }) => {
                   className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Edit Distance
-                </th>{" "}
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Sequence
-                </th>{" "}
+                </th>
               </tr>
             </thead>
             <tbody>
               {data.map((datum) => (
-                <tr key={datum.chr}>
+                <tr key={`JSON.stringify(datum)`}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                     {datum.chr}
                   </td>
@@ -199,9 +205,6 @@ export const OffTargetTable = ({ data }: { data: OffTargetData }) => {
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.edit_distance}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    {datum.sequence}
                   </td>
                 </tr>
               ))}

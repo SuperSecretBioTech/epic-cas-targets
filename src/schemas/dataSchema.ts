@@ -6,10 +6,9 @@ export const onTargetOutputSchema = z.object({
   end: z.number(),
   strand: z.enum(["+", "-"]),
   spacer: z.string().regex(/^[ATCGatcg]+$/),
-  num_mismatches: z.string(),
-  edit_distance: z.string(),
-  sequence: z.string().regex(/^[ATCGatcg]+$/),
-  num_off_targets: z.number().optional(),
+  num_mismatches: z.number(),
+  edit_distance: z.number(),
+  num_off_targets: z.number(),
   search: z.string(),
 });
 
@@ -21,12 +20,29 @@ export const onTargetSchema = z
       z.object({ longValue: z.number() }),
       z.object({ stringValue: z.enum(["+", "-"]) }),
       z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
-      z.object({ stringValue: z.string() }),
-      z.object({ stringValue: z.string() }),
+      z.object({
+        stringValue: z
+          .string()
+          .regex(/^XM:i:\d+$/)
+          .transform((data) => {
+            const num = data.split(":")[2];
+            return parseInt(num);
+          }),
+      }),
+      z.object({
+        stringValue: z
+          .string()
+          .regex(/^NM:i:\d+$/)
+          .transform((data) => {
+            const num = data.split(":")[2];
+            return parseInt(num);
+          }),
+      }),
+
       z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
-      z.object({ stringValue: z.string() }).optional(),
-      z.object({ booleanValue: z.boolean() }).optional(),
-      z.object({ booleanValue: z.boolean() }).optional(),
+      z.object({ stringValue: z.string() }),
+      z.object({ booleanValue: z.boolean() }),
+      z.object({ booleanValue: z.boolean() }),
       z.object({ doubleValue: z.number() }),
     ])
   )
@@ -40,8 +56,7 @@ export const onTargetSchema = z
         spacer: datum[4].stringValue.toUpperCase(),
         num_mismatches: datum[5].stringValue,
         edit_distance: datum[6].stringValue,
-        sequence: datum[7].stringValue.toUpperCase(),
-        num_off_targets: datum[11]?.doubleValue,
+        num_off_targets: datum[11].doubleValue,
         search: `/off_target/${datum[4].stringValue.toUpperCase()}`, // uses the spacer as the search term
       })
     )
@@ -54,9 +69,8 @@ export const offTargetOutputSchema = z.object({
   end: z.number(),
   strand: z.enum(["+", "-"]),
   spacer: z.string().regex(/^[ATCGatcg]+$/),
-  num_mismatches: z.string(),
-  edit_distance: z.string(),
-  sequence: z.string().regex(/^[ATCGatcg]+$/),
+  num_mismatches: z.number(),
+  edit_distance: z.number(),
 });
 
 export const offTargetSchema = z
@@ -67,8 +81,24 @@ export const offTargetSchema = z
       z.object({ longValue: z.number() }),
       z.object({ stringValue: z.enum(["+", "-"]) }),
       z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
-      z.object({ stringValue: z.string() }),
-      z.object({ stringValue: z.string() }),
+      z.object({
+        stringValue: z
+          .string()
+          .regex(/^XM:i:\d+$/)
+          .transform((data) => {
+            const num = data.split(":")[2];
+            return parseInt(num);
+          }),
+      }),
+      z.object({
+        stringValue: z
+          .string()
+          .regex(/^NM:i:\d+$/)
+          .transform((data) => {
+            const num = data.split(":")[2];
+            return parseInt(num);
+          }),
+      }),
       z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
       z.object({ stringValue: z.string() }),
     ])
