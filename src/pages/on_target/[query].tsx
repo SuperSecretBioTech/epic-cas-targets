@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { z } from "zod";
 import Shell from "../../components/Shell";
-import { Table } from "../../components/Table";
+import { OnTargetTable } from "../../components/Table";
 import { useOnTarget } from "../../hooks/useOnTarget";
 
 // matches ASCL1_+ or ASCL1_-
@@ -95,7 +95,7 @@ const TableViz = ({
       </section>
     );
   }
-  return <Table data={data} />;
+  return <OnTargetTable data={data} />;
 };
 
 export default Results;

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { z } from "zod";
 import Shell from "../../components/Shell";
-import { Table } from "../../components/Table";
+import { OffTargetTable } from "../../components/Table";
 import { useOffTarget } from "../../hooks/useOfftarget";
 
 const slugSchema = z.string().regex(/[ATCG]+$/);
@@ -80,7 +80,7 @@ const TableViz = ({ guide }: { guide: string }) => {
       </section>
     );
   }
-  return <Table data={data} />;
+  return <OffTargetTable data={data} />;
 };
 
 export default Results;

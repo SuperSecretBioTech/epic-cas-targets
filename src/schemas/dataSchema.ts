@@ -46,6 +46,7 @@ export const onTargetSchema = z
       })
     )
   );
+export type OnTargetData = z.infer<typeof onTargetSchema>;
 
 export const offTargetOutputSchema = z.object({
   chr: z.string(),
@@ -86,7 +87,7 @@ export const offTargetSchema = z
       })
     )
   );
-
+export type OffTargetData = z.infer<typeof offTargetSchema>;
 export const TableDataSchema = z.union([
   onTargetSchema,
   offTargetSchema,
