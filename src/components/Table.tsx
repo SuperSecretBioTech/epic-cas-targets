@@ -65,9 +65,9 @@ export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
                 </th>
                 <th
                   scope="col"
-                  className="relative sticky right-0 py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex items-center bg-white shadow-xl"
+                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
-                  <span className="px-4">Query Off-targets</span>
+                  Query Off Targets
                 </th>
               </tr>
             </thead>
@@ -101,14 +101,14 @@ export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.num_off_targets}
                   </td>
-                  <td className="relative sticky right-0 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex items-center bg-white shadow-xl">
+                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex items-center">
                     <Link
                       href={`/off_target/${datum.spacer}`}
-                      className="text-indigo-600 hover:text-indigo-900 px-2"
+                      className="text-indigo-600 hover:text-indigo-900"
                     >
                       Search
                     </Link>
-                  </td>{" "}
+                  </td>
                 </tr>
               ))}
             </tbody>
