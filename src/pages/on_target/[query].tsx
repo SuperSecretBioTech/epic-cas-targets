@@ -86,10 +86,15 @@ const TableViz = ({
       </div>
     );
   }
-  if (!data) {
-    return <div> Got no Data </div>;
+  if (!data || data.length === 0) {
+    return (
+      <section className="rounded-xl bg-white px-8 py-6 h-40 grid content-center">
+        <div className="text-3xl font-semibold text-gray-400 mx-auto">
+          No data available.
+        </div>
+      </section>
+    );
   }
-
   return <Table data={data} />;
 };
 
