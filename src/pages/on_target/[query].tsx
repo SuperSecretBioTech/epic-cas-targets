@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { z } from "zod";
+import DownloadButtons from "../../components/DownloadButton";
 import Shell from "../../components/Shell";
 import { OnTargetTable } from "../../components/Table";
 import { useOnTarget } from "../../hooks/useOnTarget";
@@ -95,7 +96,21 @@ const TableViz = ({
       </section>
     );
   }
-  return <OnTargetTable data={data} />;
+  return (
+    <section>
+      <span className="flex -mt-8 justify-end w-full">
+        <DownloadButtons
+          data={data.map((row) => {
+            const x = { ...row, search: undefined };
+            delete x.search;
+            return x;
+          })}
+          fileName={`${target_gene}_${effect}_on_target`}
+        />
+      </span>
+      <OnTargetTable data={data} />
+    </section>
+  );
 };
 
 export default Results;
