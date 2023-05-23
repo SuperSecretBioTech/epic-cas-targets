@@ -1,8 +1,19 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, BeakerIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { classNames } from "@ninjha01/nitro-ui";
+import { useRouter } from "next/router";
 
-const navigation = [{ name: "Home", href: "/", current: true }];
+const navigation: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+  { name: "FAQ", href: "/faq" },
+];
+
+interface NavItem {
+  name: string;
+  href: string;
+}
 
 const Shell = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -20,8 +31,19 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Shell;
+const navItemIsCurrent = ({
+  item,
+  pathname,
+}: {
+  item: NavItem;
+  pathname: string;
+}) => {
+  return item.href === pathname;
+};
 
 function Header() {
+  const { pathname } = useRouter();
+
   return (
     <div className="bg-fuchsia-600 pb-32 dark:bg-fuchsia-800">
       <Disclosure
@@ -43,12 +65,16 @@ function Header() {
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            item.current
+                            navItemIsCurrent({ item, pathname })
                               ? "bg-fuchsia-700 text-white"
                               : "text-white hover:bg-fuchsia-500 hover:bg-opacity-75",
                             "rounded-md py-2 px-3 text-sm font-medium"
                           )}
-                          aria-current={item.current ? "page" : undefined}
+                          aria-current={
+                            navItemIsCurrent({ item, pathname })
+                              ? "page"
+                              : undefined
+                          }
                         >
                           {item.name}
                         </a>
@@ -78,12 +104,14 @@ function Header() {
                     as="a"
                     href={item.href}
                     className={classNames(
-                      item.current
+                      navItemIsCurrent({ item, pathname })
                         ? "bg-fuchsia-700 text-white"
                         : "text-white hover:bg-fuchsia-500 hover:bg-opacity-75",
                       "block rounded-md py-2 px-3 text-base font-medium"
                     )}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={
+                      navItemIsCurrent({ item, pathname }) ? "page" : undefined
+                    }
                   >
                     {item.name}
                   </Disclosure.Button>
