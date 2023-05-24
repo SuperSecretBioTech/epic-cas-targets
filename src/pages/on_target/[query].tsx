@@ -4,6 +4,7 @@ import DownloadButtons from "../../components/DownloadButton";
 import Shell from "../../components/Shell";
 import { OnTargetTable } from "../../components/Table";
 import { useOnTarget } from "../../hooks/useOnTarget";
+import { Legend } from "../../components/Legend";
 
 // matches ASCL1_+ or ASCL1_-
 const slugSchema = z
@@ -15,6 +16,54 @@ const slugSchema = z
       .transform((data) => ({ target_gene: data[0], effect: data[1] }))
       .parse(data.split("_"));
   });
+
+const columns = [
+  {
+    name: "Chromosome",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Start",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "End",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Strand",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Spacer",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Number of Mismatches",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Edit Distance",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Number of Off-Targets",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Query Off Targets",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+];
 const Results = () => {
   const router = useRouter();
   const rawSlug = router.query.query;
@@ -28,6 +77,9 @@ const Results = () => {
   return (
     <Shell>
       <div className="flex flex-col gap-8">
+        <div className="self-end">
+          <Legend columns={columns} />
+        </div>
         <section className="rounded-xl bg-white px-8 py-6">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
@@ -96,6 +148,7 @@ const TableViz = ({
       </section>
     );
   }
+
   return (
     <section>
       <span className="flex -mt-8 justify-end w-full">
@@ -108,6 +161,7 @@ const TableViz = ({
           fileName={`${target_gene}_${effect}_on_target`}
         />
       </span>
+
       <OnTargetTable data={data} geneid={target_gene} />
     </section>
   );

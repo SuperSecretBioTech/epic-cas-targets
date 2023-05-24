@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { z } from "zod";
 import DownloadButtons from "../../components/DownloadButton";
+import { Legend } from "../../components/Legend";
 import Shell from "../../components/Shell";
 import { OffTargetTable } from "../../components/Table";
 import { useOffTarget } from "../../hooks/useOfftarget";
@@ -15,6 +16,43 @@ const slugSchema = z
       .parse(data.split("_"));
   });
 
+const columns = [
+  {
+    name: "Chromosome",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Start",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "End",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Strand",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Spacer",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Number of Mismatches",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+  {
+    name: "Edit Distance",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+  },
+];
 const Results = () => {
   const router = useRouter();
   const rawSlug = router.query.guide;
@@ -32,6 +70,10 @@ const Results = () => {
   return (
     <Shell>
       <div className="flex flex-col gap-8">
+        <div className="self-end">
+          <Legend columns={columns} />
+        </div>
+
         <section className="rounded-xl bg-white px-8 py-6">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
@@ -97,7 +139,7 @@ const TableViz = ({ guide, geneid }: { guide: string; geneid: string }) => {
           fileName={`${geneid}_${guide}_off_target`}
         />
       </span>
-      <OffTargetTable data={data} />;
+      <OffTargetTable data={data} />
     </section>
   );
 };
