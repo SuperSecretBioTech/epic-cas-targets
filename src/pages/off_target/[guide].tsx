@@ -92,6 +92,7 @@ const Results = () => {
 const TableViz = ({ guide, geneid }: { guide: string; geneid: string }) => {
   const { data, error, isFetching } = useOffTarget({
     guide,
+    target_gene: geneid,
   });
   if (error) {
     return (

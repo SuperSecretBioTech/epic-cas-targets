@@ -40,6 +40,7 @@ const requestSchema = z.union([
   z.object({
     guide: z.string().regex(/^[ACGT]+$/),
     query_type: z.literal("off_target"),
+    target_gene: z.enum(GENES),
   }),
 ]);
 
@@ -66,9 +67,10 @@ export default async function handler(
     };
     parser = onTargetSchema;
   } else if (query_type === "off_target") {
-    const { guide } = reqParsed.data;
+    const { guide, target_gene } = reqParsed.data;
     payload = {
       guide,
+      target_gene,
       query_type,
     };
     parser = offTargetSchema;

@@ -3,13 +3,20 @@ import wretch from "wretch";
 import { z } from "zod";
 import { offTargetOutputSchema } from "../schemas/dataSchema";
 
-export const useOffTarget = ({ guide }: { guide: string }) => {
+export const useOffTarget = ({
+  guide,
+  target_gene,
+}: {
+  guide: string;
+  target_gene: string;
+}) => {
   const fetchFunc = async () => {
     const url = "/api/data";
 
     const rawData = await wretch(url)
       .post({
         guide,
+        target_gene,
         query_type: "off_target",
       })
       .json();

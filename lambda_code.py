@@ -79,30 +79,28 @@ def lambda_handler(event, context):
                 "headers": {"Content-Type": "application/json"},
             }
         print(f"{target_gene=} {effect=}")
-        table_name = "on_target"
         sql_params = [{"name": "target_gene", "value": target_gene}]
-        query_str = f"SELECT * FROM {table_name} where geneid=:target_gene"
+        query_str = f"SELECT * FROM on_target where geneid=:target_gene"
 
     elif query_type == "off_target":
         print("OFF TARGET QUERY")
         guide = body.get("guide", None)
-        if guide is None:
-            error_msg = f"guide is a required post parameter. Received {guide=}"
+        target_gene = body.get("target_gene", None)
+        if guide is None or target_gene is None:
+            error_msg = f"guide and target_gene are required post parameters. Received {guide=} {target_gene=}"
             return {
                 "statusCode": 400,
                 "body": json.dumps({"error": error_msg}),
                 "headers": {"Content-Type": "application/json"},
             }
         print(f"{guide=}")
-        table_name = "off_target"
         reverse_complement_guide = reverse_complement(guide)
         sql_params = [
             {"name": "spacer", "value": guide},
             {"name": "reverse_spacer", "value": reverse_complement_guide},
+            {"name": "target_gene", "value": target_gene},
         ]
-        query_str = (
-            f"SELECT * FROM {table_name} WHERE spacer=:spacer OR spacer=:reverse_spacer"
-        )
+        query_str = f"SELECT * FROM off_target WHERE (spacer=:spacer OR spacer=:reverse_spacer) AND geneid=:target_gene"
 
     else:
         error_msg = f"Invalid query_type. Received {query_type=}"
