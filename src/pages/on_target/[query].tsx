@@ -108,7 +108,7 @@ const TableViz = ({
           fileName={`${target_gene}_${effect}_on_target`}
         />
       </span>
-      <OnTargetTable data={data} />
+      <OnTargetTable data={data} geneid={target_gene} />
     </section>
   );
 };

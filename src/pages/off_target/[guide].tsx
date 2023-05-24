@@ -1,10 +1,19 @@
 import { useRouter } from "next/router";
 import { z } from "zod";
+import DownloadButtons from "../../components/DownloadButton";
 import Shell from "../../components/Shell";
 import { OffTargetTable } from "../../components/Table";
 import { useOffTarget } from "../../hooks/useOfftarget";
 
-const slugSchema = z.string().regex(/[ATCG]+$/);
+const slugSchema = z
+  .string()
+  .regex(/[0-9A-Z-]_[ATCG]+$/)
+  .transform((data) => {
+    return z
+      .tuple([z.string(), z.string()])
+      .transform((data) => ({ target_gene: data[0], guide: data[1] }))
+      .parse(data.split("_"));
+  });
 
 const Results = () => {
   const router = useRouter();
@@ -18,7 +27,7 @@ const Results = () => {
     return <Shell>Invalid Guide: {rawSlug}</Shell>;
   }
 
-  const guide = slug.data;
+  const { target_gene, guide } = slug.data;
 
   return (
     <Shell>
@@ -27,18 +36,18 @@ const Results = () => {
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
               <h1 className="text-xl font-semibold text-gray-900">
-                Guide: {guide}
+                Guide: {guide} | {target_gene}
               </h1>
             </div>
           </div>
-          <TableViz guide={guide} />
+          <TableViz guide={guide} geneid={target_gene} />
         </section>
       </div>
     </Shell>
   );
 };
 
-const TableViz = ({ guide }: { guide: string }) => {
+const TableViz = ({ guide, geneid }: { guide: string; geneid: string }) => {
   const { data, error, isFetching } = useOffTarget({
     guide,
   });
@@ -80,7 +89,17 @@ const TableViz = ({ guide }: { guide: string }) => {
       </section>
     );
   }
-  return <OffTargetTable data={data} />;
+  return (
+    <section>
+      <span className="flex -mt-8 justify-end w-full">
+        <DownloadButtons
+          data={data}
+          fileName={`${geneid}_${guide}_off_target`}
+        />
+      </span>
+      <OffTargetTable data={data} />;
+    </section>
+  );
 };
 
 export default Results;

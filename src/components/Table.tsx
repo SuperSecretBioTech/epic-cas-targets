@@ -3,7 +3,13 @@ import { useState } from "react";
 import { OffTargetData, OnTargetData } from "../schemas/dataSchema";
 
 const MAX_MISMATCHES = 5000;
-export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
+export const OnTargetTable = ({
+  data,
+  geneid,
+}: {
+  data: OnTargetData;
+  geneid: string;
+}) => {
   const [sortingOrder, setSortingOrder] = useState<"asc" | "desc">("asc");
   const filteredData = data.filter((d) => d.num_off_targets <= MAX_MISMATCHES);
   const sortedData = filteredData.sort((a, b) => {
@@ -115,7 +121,7 @@ export const OnTargetTable = ({ data }: { data: OnTargetData }) => {
                   </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex items-center">
                     <Link
-                      href={`/off_target/${datum.spacer}`}
+                      href={`/off_target/${geneid}_${datum.spacer}`}
                       className="text-indigo-600 hover:text-indigo-900"
                     >
                       Search
