@@ -56,8 +56,7 @@ function FormInput() {
               </h3>
               <p className="mt-1 text-sm text-fuchsia-50">
                 This is a web tool for selecting target sites for
-                CRISPR/CasMini. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Quas cupiditate laboriosam fugiat.
+                CRISPR/CasMini.
               </p>
             </div>
           </div>
