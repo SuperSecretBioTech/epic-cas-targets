@@ -21,47 +21,47 @@ const columns = [
   {
     name: "Chromosome",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Chromosome number (hg38).",
   },
   {
     name: "Start",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Guide start position (genomic coordinates based on hg38).",
   },
   {
     name: "End",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Guide end position (genomic coordinates based on hg38).",
   },
   {
     name: "Strand",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Positive/Negative strand information.",
   },
   {
     name: "Spacer",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "20bp spacer sequence.",
   },
   {
     name: "Number of Mismatches",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Number of mismatches in spacer alignment to hg38 genome.",
   },
   {
     name: "Edit Distance",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Minimal number of one-nucleotide edits (substitutions, insertions and deletions) needed to transform the spacer sequence into the alignment sequence.",
   },
   {
     name: "Number of Off-Targets",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Number of off-target alignments (with edit distance <= 3) with matching PAM sequence.",
   },
   {
     name: "Query Off Targets",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget nunc justo. Ut vel magna enim. Sed sit amet purus eget purus accumsan dignissim.",
+      "Click here to investigate sequence identity of off-targets.",
   },
 ];
 const Results = () => {
