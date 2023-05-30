@@ -7,9 +7,9 @@ import { NextPage } from "next";
 import Shell from "../components/Shell";
 const faqs = [
   {
-    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+    question: "What Cas molecules is this guide appropriate for?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "Our spacer design tool is appropriate for Cas molecules recognizing TTTR PAMs such as dCas-Mini.",
   },
 ];
 const FAQ: NextPage = () => {
