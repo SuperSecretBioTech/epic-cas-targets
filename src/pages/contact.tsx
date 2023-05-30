@@ -12,10 +12,10 @@ const Contact: NextPage = () => {
       <div className="isolate rounded-xl bg-white px-6 py-16 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Contact sales
+            Contact
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
-            Aute magna irure deserunt veniam aliqua magna enim voluptate.
+            For more information, contact tim.daley@epic-bio.com.
           </p>
         </div>
         <div className="mx-auto mt-20 max-w-lg space-y-16">
