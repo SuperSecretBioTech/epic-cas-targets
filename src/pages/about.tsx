@@ -16,9 +16,6 @@ const About: NextPage = () => {
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
             To facilitate use of Epic's Gene Expression Modulation System (GEMS) and associated dCas molecules, we designed a spacer design tool that allows users to retrieve genome-wide activation and suppression guides for Cas molecules with TTTR PAMs.
-          </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            Aute magna irure deserunt veniam aliqua magna enim voluptate.
           </p>
         </div>
       </div>
