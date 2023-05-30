@@ -72,12 +72,12 @@ export const OnTargetTable = ({
                 </th>
                 <th
                   scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 flex"
+                  className="flex px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Number of Off-Targets
                   <button
                     type="button"
-                    className="btn btn-outline btn-xs self-end"
+                    className="btn-outline btn-xs btn self-end"
                     onClick={() => {
                       setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
                     }}
@@ -120,7 +120,7 @@ export const OnTargetTable = ({
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.num_off_targets}
                   </td>
-                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 flex items-center">
+                  <td className="relative flex items-center whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                     <Link
                       href={`/off_target/${geneid}_${datum.spacer}`}
                       className="text-indigo-600 hover:text-indigo-900"

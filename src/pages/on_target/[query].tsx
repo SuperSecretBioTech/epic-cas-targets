@@ -20,33 +20,27 @@ const slugSchema = z
 const columns = [
   {
     name: "Chromosome",
-    description:
-      "Chromosome number (hg38).",
+    description: "Chromosome number (hg38).",
   },
   {
     name: "Start",
-    description:
-      "Guide start position (genomic coordinates based on hg38).",
+    description: "Guide start position (genomic coordinates based on hg38).",
   },
   {
     name: "End",
-    description:
-      "Guide end position (genomic coordinates based on hg38).",
+    description: "Guide end position (genomic coordinates based on hg38).",
   },
   {
     name: "Strand",
-    description:
-      "Positive/Negative strand information.",
+    description: "Positive/Negative strand information.",
   },
   {
     name: "Spacer",
-    description:
-      "20bp spacer sequence.",
+    description: "20bp spacer sequence.",
   },
   {
     name: "Number of Mismatches",
-    description:
-      "Number of mismatches in spacer alignment to hg38 genome.",
+    description: "Number of mismatches in spacer alignment to hg38 genome.",
   },
   {
     name: "Edit Distance",
@@ -60,8 +54,7 @@ const columns = [
   },
   {
     name: "Query Off Targets",
-    description:
-      "Click here to investigate sequence identity of off-targets.",
+    description: "Click here to investigate sequence identity of off-targets.",
   },
 ];
 const Results = () => {
@@ -112,10 +105,10 @@ const TableViz = ({
   if (error) {
     console.error(error);
     return (
-      <div className="text-red-400 flex w-full max-w-xl h-40 gap-2 items-center justify-center my-8 mx-auto">
+      <div className="my-8 mx-auto flex h-40 w-full max-w-xl items-center justify-center gap-2 text-red-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="stroke-current flex-shrink-0 h-6 w-6"
+          className="h-6 w-6 flex-shrink-0 stroke-current"
           fill="none"
           viewBox="0 0 24 24"
         >
@@ -134,15 +127,15 @@ const TableViz = ({
   }
   if (isFetching) {
     return (
-      <div className="h-40 w-full flex justify-center items-center ">
+      <div className="flex h-40 w-full items-center justify-center ">
         <progress className="progress progress-primary w-56"></progress>
       </div>
     );
   }
   if (!data || data.length === 0) {
     return (
-      <section className="rounded-xl bg-white px-8 py-6 h-40 grid content-center">
-        <div className="text-3xl font-semibold text-gray-400 mx-auto">
+      <section className="grid h-40 content-center rounded-xl bg-white px-8 py-6">
+        <div className="mx-auto text-3xl font-semibold text-gray-400">
           No data available.
         </div>
       </section>
@@ -151,7 +144,7 @@ const TableViz = ({
 
   return (
     <section>
-      <span className="flex -mt-8 justify-end w-full">
+      <span className="-mt-8 flex w-full justify-end">
         <DownloadButtons
           data={data.map((row) => {
             const x = { ...row, search: undefined };
