@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       colors: {
         noir: colors.zinc,
-        brand: colors.fuchsia,
+        brand: colors.teal,
       },
     },
   },
@@ -26,7 +26,7 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#c026d3",
+          primary: "#319795",
           secondary: "#463AA2",
           accent: "#C148AC",
           neutral: "#021431",

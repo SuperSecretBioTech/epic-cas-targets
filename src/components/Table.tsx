@@ -123,7 +123,7 @@ export const OnTargetTable = ({
                   <td className="relative flex items-center whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                     <Link
                       href={`/off_target/${geneid}_${datum.spacer}`}
-                      className="text-indigo-600 hover:text-indigo-900"
+                      className="text-brand-600 hover:text-brand-900"
                     >
                       Search
                     </Link>
