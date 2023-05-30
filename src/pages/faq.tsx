@@ -37,16 +37,6 @@ const FAQ: NextPage = () => {
               <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
                 Frequently asked questions
               </h2>
-              <p className="mt-4 text-base leading-7 text-gray-600">
-                Can’t find the answer you’re looking for? Reach out to our{" "}
-                <a
-                  href="#"
-                  className="font-semibold text-brand-600 hover:text-brand-500"
-                >
-                  customer support
-                </a>{" "}
-                team.
-              </p>
             </div>
             <div className="mt-10 lg:col-span-7 lg:mt-0">
               <dl className="space-y-10">
