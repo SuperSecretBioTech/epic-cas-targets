@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import Shell from "../components/Shell";
 const faqs = [
   {
-    question: "What Cas molecules is this guide appropriate for?",
+    question: "What Cas molecules is this tool appropriate for?",
     answer:
       "Our spacer design tool is appropriate for Cas molecules recognizing TTTR PAMs such as dCas-Mini.",
   },
