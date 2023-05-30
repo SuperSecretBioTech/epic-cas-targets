@@ -12,9 +12,19 @@ const faqs = [
       "Our spacer design tool is appropriate for Cas molecules recognizing TTTR PAMs such as dCas-Mini.",
   },
   {
-    question: "this is a test example",
+    question: "What is the difference between activation and suppression guides?",
     answer:
-      "Please don't break anything because LT might be looking at this right now",
+      "Activation guides are located -1000bp/+200bp from the TSS and suppression guides are located -200bp/+1000bp from the TSS.",
+  },
+  {
+    question: "Is this tool capable of designing guides against genomes other than human?",
+    answer:
+      "While we currently only support guide design against the human genome (hg38), we will shortly be releasing a Mus musculus database (mm10) to facilitate mouse studies.",
+  },
+  {
+    question: "How are off-targets computed?",
+    answer:
+      "20bp spacer sequences were sensitively mapped genome-wide using bowtie2 and then restricted to off-target sites containing TTTR within 5bp upstream of the spacer sequence (thus allowing for a single bp bulge). Final on-target spacer lists were sorted based on number of putative off-targets.",
   },
 ];
 const FAQ: NextPage = () => {
