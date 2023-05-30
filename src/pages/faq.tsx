@@ -11,6 +11,11 @@ const faqs = [
     answer:
       "Our spacer design tool is appropriate for Cas molecules recognizing TTTR PAMs such as dCas-Mini.",
   },
+  {
+    question: "this is a test example",
+    answer:
+      "Please don't break anything because LT might be looking at this right now",
+  },
 ];
 const FAQ: NextPage = () => {
   return (
