@@ -55,8 +55,9 @@ function FormInput() {
                 Search Terms
               </h3>
               <p className="mt-1 text-sm text-brand-50">
-                This is a web tool for selecting target sites for
-                CRISPR/CasMini.
+                Use this tool to generate a list target sites for
+                CRISPR/CasMini. Search by the specific gene ID and the 
+                activation/suppression modulatarity associated with target sites.
               </p>
             </div>
           </div>
