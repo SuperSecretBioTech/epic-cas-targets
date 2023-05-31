@@ -26,6 +26,11 @@ const faqs = [
     answer:
       "20bp spacer sequences were sensitively mapped genome-wide using bowtie2 and then restricted to off-target sites containing TTTR within 5bp upstream of the spacer sequence (thus allowing for a single bp bulge). Final on-target spacer lists were sorted based on number of putative off-targets.",
   },
+  {
+    question: "Why do you never see any off-target count values above 5000 for any given on-target result?",
+    answer:
+      "On-target results with associated off-target values above 5000 exist. We simply don't report them.",
+  },
 ];
 const FAQ: NextPage = () => {
   return (
