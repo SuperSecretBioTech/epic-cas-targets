@@ -55,9 +55,8 @@ function FormInput() {
                 Search Terms
               </h3>
               <p className="mt-1 text-sm text-brand-50">
-                Use this tool to generate a list target sites for
-                CRISPR/CasMini. Search by the specific gene ID and the 
-                activation/suppression modulatarity associated with target sites.
+                Use this tool to generate a list of gRNA spacer sequences for CasMini, 
+                according to transcriptional activation/suppression modulation at specific genes
               </p>
             </div>
           </div>
