@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "What Cas molecules is this tool appropriate for?",
     answer:
-      "Our spacer design tool is appropriate for Cas molecules recognizing TTTR PAMs such as dCas-Mini.",
+      "Our spacer design tool is appropriate for Cas molecules recognizing TTTR PAMs such as dCasMINI (Xu et al., 2021).",
   },
   {
     question: "What is the difference between activation and suppression guides?",
@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "Is this tool capable of designing guides against genomes other than human?",
     answer:
-      "While we currently only support guide design against the human genome (hg38), we will shortly be releasing a Mus musculus database (mm10) to facilitate mouse studies.",
+      "While we currently only support guide design against the human genome (hg38), stay tuned as we plan to add additional genomes in the future to facilitate studies in model systems.",
   },
   {
     question: "How are off-targets computed?",
@@ -30,6 +30,11 @@ const faqs = [
     question: "Why do you never see any off-target count values above 5000 for any given on-target result?",
     answer:
       "On-target results with associated off-target values above 5000 exist. We simply don't report them.",
+  },
+  {
+    question: "Do you support guide design against additional PAMs?",
+    answer:
+      "Presently we only offer guide design against TTTR PAMs suitable for studies involving dCasMINI (Xu et al., 2021).",
   },
 ];
 const FAQ: NextPage = () => {
