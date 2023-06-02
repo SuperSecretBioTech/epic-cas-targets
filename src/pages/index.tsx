@@ -55,8 +55,8 @@ function FormInput() {
                 Search Terms
               </h3>
               <p className="mt-1 text-sm text-brand-50">
-                Use this tool to generate a list of gRNA spacer sequences for CasMini, 
-                according to transcriptional activation/suppression modulation at specific genes
+                Use this tool to generate a list of gRNA spacer sequences against specific genes for dCasMini, 
+                according to desired transcriptional modulation (activation/suppression).
               </p>
             </div>
           </div>
