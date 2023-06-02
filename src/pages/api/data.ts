@@ -81,12 +81,14 @@ export default async function handler(
 
   try {
     rawData = await wretch(url).post(payload).json();
+    console.log(rawData);
   } catch (err: any) {
     const error = err as WretchError;
     const errorSchema = z.string().transform((data) => {
       let jsonParsed = null;
       try {
         jsonParsed = JSON.parse(data);
+        console.log(jsonParsed[0]);
       } catch {
         return `Failed to parse error into json: ${data}`;
       }

@@ -144,12 +144,16 @@ export const OnTargetTable = ({
                     {datum.num_off_targets}
                   </td>
                   <td className="border-l relative flex items-center py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                    <Link
-                      href={`/off_target/${geneid}_${datum.spacer}`}
-                      className="text-brand-600 hover:text-brand-900"
-                    >
-                      Search
-                    </Link>
+                    {datum.num_off_targets > 0 ? (
+                      <Link
+                        href={`/off_target/${geneid}_${datum.spacer}`}
+                        className="text-brand-600 hover:text-brand-900"
+                      >
+                        Search
+                      </Link>
+                    ) : (
+                      <span className="text-gray-400">Search</span>
+                    )}
                   </td>
                 </tr>
               ))}

@@ -8,6 +8,7 @@ export const onTargetOutputSchema = z.object({
   spacer: z.string().regex(/^[ATCGatcg]+$/),
   num_mismatches: z.number(),
   edit_distance: z.number(),
+  alignment_sequence: z.string().regex(/^[ATCGatcg]+$/),
   num_off_targets: z.number(),
   search: z.string(),
 });
@@ -56,6 +57,7 @@ export const onTargetSchema = z
         spacer: datum[4].stringValue.toUpperCase(),
         num_mismatches: datum[5].stringValue,
         edit_distance: datum[6].stringValue,
+        alignment_sequence: datum[7].stringValue,
         num_off_targets: datum[11].doubleValue,
         search: `/off_target/${datum[4].stringValue.toUpperCase()}`, // uses the spacer as the search term
       })
@@ -71,6 +73,7 @@ export const offTargetOutputSchema = z.object({
   spacer: z.string().regex(/^[ATCGatcg]+$/),
   num_mismatches: z.number(),
   edit_distance: z.number(),
+  alignment_sequence: z.string().regex(/^[ATCGatcg]+$/),
 });
 
 export const offTargetSchema = z
@@ -113,7 +116,7 @@ export const offTargetSchema = z
         spacer: datum[4].stringValue.toUpperCase(),
         num_mismatches: datum[5].stringValue,
         edit_distance: datum[6].stringValue,
-        sequence: datum[7].stringValue.toUpperCase(),
+        alignment_sequence: datum[7].stringValue.toUpperCase(),
       })
     )
   );
