@@ -81,14 +81,12 @@ export default async function handler(
 
   try {
     rawData = await wretch(url).post(payload).json();
-    console.log(rawData);
   } catch (err: any) {
     const error = err as WretchError;
     const errorSchema = z.string().transform((data) => {
       let jsonParsed = null;
       try {
         jsonParsed = JSON.parse(data);
-        console.log(jsonParsed[0]);
       } catch {
         return `Failed to parse error into json: ${data}`;
       }
@@ -112,7 +110,6 @@ export default async function handler(
   }
   const dataParsed = parser.safeParse(resParsed.data);
   if (!dataParsed.success) {
-    console.log(dataParsed.error);
     return res.status(500).json({ error: "Invalid data recieved from lambda" });
   }
   return res.status(200).json(dataParsed.data);

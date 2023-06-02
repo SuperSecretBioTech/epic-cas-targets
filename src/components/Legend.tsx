@@ -43,7 +43,7 @@ export const Legend = ({
           {columns.map((col) => (
             <p
               key={`${col.name}`}
-              className="mb-2 last:-mb-4 text-sm text-zinc-700"
+              className="mb-2 text-sm text-zinc-700 last:-mb-4"
             >
               <strong className="font-semibold">{col.name} </strong>:{" "}
               {col.description}
