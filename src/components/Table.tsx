@@ -97,8 +97,7 @@ export const OnTargetTable = ({
                     </span>
                     <button
                       type="button"
-                      className="btn-outline btn-xs btn self-end"
-                      style={{width : '10px'}}
+                      className="btn-outline btn-xs btn self-end w-[10px]"
                       onClick={() => {
                         setSortingOrder(
                           sortingOrder === "asc" ? "desc" : "asc"
