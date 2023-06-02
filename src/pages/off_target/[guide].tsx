@@ -142,7 +142,7 @@ const TableViz = ({
   }
   return (
     <section>
-      <span className="-mt-8 flex w-full justify-end">
+      <span className="lg:-mt-8 mt-2 flex w-full justify-end">
         <DownloadButtons
           data={data}
           fileName={`${geneid}_${guide}_off_target`}
