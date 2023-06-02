@@ -15,9 +15,10 @@ const About: NextPage = () => {
             About
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
-            {`We designed a spacer design
-            tool that allows users to retrieve genome-wide activation and
-            suppression guides for nuclease inactivated dCas-Mini (Xu et al., 2021).`}
+            {`We designed a spacer design tool that allows users to retrieve genome-wide activation and
+            suppression guides for nuclease inactivated dCasMINI (Xu et al., 2021).
+            This tool should facilitate epigenetic modulation studies involving dCasMINI (or other dCas molecules recognizing TTTR PAMs)
+            by computing genome-wide activation/suppression guides that can be queried by users based on gene IDs.`}
           </p>
         </div>
       </div>
