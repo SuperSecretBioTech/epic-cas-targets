@@ -2,7 +2,6 @@ import { Combobox } from "@ninjha01/nitro-ui";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import Shell from "../components/Shell";
 import { GENES } from "../data/genes";
 
@@ -108,7 +107,7 @@ function FormInput() {
               </div>
               <div className="bg-zinc-50 px-4 py-3 text-right sm:px-6">
                 <button
-                  className="inline-flex justify-center rounded-md bg-brand-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex justify-center rounded-md bg-brand-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 focus-visible:outline disabled:cursor-not-allowed disabled:opacity-50"
                   onClick={onSubmit}
                 >
                   Find Target Sites

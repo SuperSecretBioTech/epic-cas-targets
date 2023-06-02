@@ -1,4 +1,3 @@
-import React from "react";
 import { saveAs } from "file-saver";
 
 const DownloadButtons = ({
@@ -9,7 +8,7 @@ const DownloadButtons = ({
   fileName: string;
 }) => {
   const downloadCSV = () => {
-    const csvData = convertToCSV(data); // Implement the convertToCSV function
+    const csvData = convertToCSV(data);
     const blob = new Blob([csvData], { type: "text/csv;charset=utf-8" });
     saveAs(blob, `${fileName}.csv`);
   };
@@ -25,13 +24,13 @@ const DownloadButtons = ({
   return (
     <div className="btn-group">
       <button
-        className="btn-primary btn-outline btn-sm btn"
+        className="btn-outline btn-primary btn-sm btn"
         onClick={downloadCSV}
       >
         Download CSV
       </button>
       <button
-        className="btn-primary btn-outline btn-sm btn"
+        className="btn-outline btn-primary btn-sm btn"
         onClick={downloadJSON}
       >
         Download JSON
@@ -44,4 +43,5 @@ const convertToCSV = <T extends Record<string, unknown>>(data: T[]) => {
   const rows = data.map((item) => Object.values(item).join(",")).join("\n");
   return header + rows;
 };
+
 export default DownloadButtons;
