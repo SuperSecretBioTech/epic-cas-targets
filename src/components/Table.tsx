@@ -63,7 +63,7 @@ export const OnTargetTable = ({
                 <th scope="col" className="px-3 py-3.5">
                   <div className="flex gap-2 items-end">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
-                      Number of Mismatches
+                      Mismatch Count
                     </span>
                     <button
                       type="button"
@@ -93,7 +93,7 @@ export const OnTargetTable = ({
                 <th scope="col" className=" px-1 py-3.5">
                   <div className="flex">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
-                      Number of Off-Targets
+                      Off-Target Count
                     </span>
                     <button
                       type="button"
