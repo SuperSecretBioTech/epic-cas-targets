@@ -118,7 +118,7 @@ export const OnTargetTable = ({
             </thead>
             <tbody>
               {sortedData.map((datum) => (
-                <tr key={JSON.stringify(datum)}>
+                <tr key={JSON.stringify(datum)} className="hover:bg-gray-100">
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                     {datum.chr}
                   </td>
