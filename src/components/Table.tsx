@@ -119,31 +119,31 @@ export const OnTargetTable = ({
             <tbody>
               {sortedData.map((datum) => (
                 <tr key={JSON.stringify(datum)} className="hover:bg-gray-100">
-                  <td className="whitespace-py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                  <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                     <span className="px-2">{datum.chr}</span>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.start}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.end}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.strand}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.spacer}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.num_mismatches}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.edit_distance}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.num_off_targets}
                   </td>
-                  <td className="border-l relative flex items-center whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                  <td className="border-l relative flex items-center py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                     <Link
                       href={`/off_target/${geneid}_${datum.spacer}`}
                       className="text-brand-600 hover:text-brand-900"
@@ -239,25 +239,25 @@ export const OffTargetTable = ({
             <tbody>
               {data.map((datum) => (
                 <tr key={JSON.stringify(datum)} className="hover:bg-gray-100">
-                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                  <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                     <span className="px-2">{datum.chr}</span>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.start}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.end}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.strand}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.spacer}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.num_mismatches}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.edit_distance}
                   </td>
                 </tr>
