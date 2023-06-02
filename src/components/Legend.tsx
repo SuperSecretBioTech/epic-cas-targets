@@ -3,10 +3,13 @@ import { useState } from "react";
 
 export const Legend = ({
   columns,
+  open,
+  setOpen,
 }: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
   columns: { name: string; description: string }[];
 }) => {
-  const [open, setOpen] = useState(false);
   return (
     <button
       tabIndex={0}

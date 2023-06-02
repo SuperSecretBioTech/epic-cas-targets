@@ -5,6 +5,7 @@ import Shell from "../../components/Shell";
 import { OnTargetTable } from "../../components/Table";
 import { useOnTarget } from "../../hooks/useOnTarget";
 import { Legend } from "../../components/Legend";
+import { useState } from "react";
 
 // matches ASCL1_+ or ASCL1_-
 const slugSchema = z
@@ -58,6 +59,7 @@ const columns = [
   },
 ];
 const Results = () => {
+  const [legendOpen, setLegendOpen] = useState(false);
   const router = useRouter();
   const rawSlug = router.query.query;
   const slug = slugSchema.safeParse(rawSlug);
@@ -71,19 +73,20 @@ const Results = () => {
     <Shell>
       <div className="flex flex-col gap-8">
         <div className="self-end">
-          <Legend columns={columns} />
+          <Legend columns={columns} open={legendOpen} setOpen={setLegendOpen} />
         </div>
         <section className="rounded-xl bg-white px-8 py-6">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
               <h1 className="text-xl font-semibold text-gray-900">
-                {target_gene} | {effect} |{" "}
+                {target_gene} | {effect}
               </h1>
             </div>
           </div>
           <TableViz
             target_gene={slug.data.target_gene}
             effect={slug.data.effect}
+            toggleLegendOpen={() => setLegendOpen(true)}
           />
         </section>
       </div>
@@ -94,9 +97,11 @@ const Results = () => {
 const TableViz = ({
   target_gene,
   effect,
+  toggleLegendOpen,
 }: {
   target_gene: string;
   effect: "Activation" | "Suppression";
+  toggleLegendOpen: () => void;
 }) => {
   const { data, error, isFetching } = useOnTarget({
     target_gene,
@@ -155,7 +160,11 @@ const TableViz = ({
         />
       </span>
 
-      <OnTargetTable data={data} geneid={target_gene} />
+      <OnTargetTable
+        data={data}
+        geneid={target_gene}
+        toggleLegendOn={toggleLegendOpen}
+      />
     </section>
   );
 };

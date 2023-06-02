@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { z } from "zod";
 import DownloadButtons from "../../components/DownloadButton";
 import { Legend } from "../../components/Legend";
@@ -48,6 +49,7 @@ const columns = [
   },
 ];
 const Results = () => {
+  const [legendOpen, setLegendOpen] = useState(false);
   const router = useRouter();
   const rawSlug = router.query.guide;
   const slug = slugSchema.safeParse(rawSlug);
@@ -65,7 +67,7 @@ const Results = () => {
     <Shell>
       <div className="flex flex-col gap-8">
         <div className="self-end">
-          <Legend columns={columns} />
+          <Legend columns={columns} open={legendOpen} setOpen={setLegendOpen} />
         </div>
 
         <section className="rounded-xl bg-white px-8 py-6">
@@ -76,14 +78,26 @@ const Results = () => {
               </h1>
             </div>
           </div>
-          <TableViz guide={guide} geneid={target_gene} />
+          <TableViz
+            guide={guide}
+            geneid={target_gene}
+            toggleLegendOpen={() => setLegendOpen(true)}
+          />
         </section>
       </div>
     </Shell>
   );
 };
 
-const TableViz = ({ guide, geneid }: { guide: string; geneid: string }) => {
+const TableViz = ({
+  guide,
+  geneid,
+  toggleLegendOpen,
+}: {
+  guide: string;
+  geneid: string;
+  toggleLegendOpen: () => void;
+}) => {
   const { data, error, isFetching } = useOffTarget({
     guide,
     target_gene: geneid,
@@ -134,7 +148,7 @@ const TableViz = ({ guide, geneid }: { guide: string; geneid: string }) => {
           fileName={`${geneid}_${guide}_off_target`}
         />
       </span>
-      <OffTargetTable data={data} />
+      <OffTargetTable data={data} toggleLegendOn={toggleLegendOpen} />
     </section>
   );
 };

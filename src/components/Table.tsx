@@ -7,9 +7,11 @@ const MAX_MISMATCHES = 5000;
 export const OnTargetTable = ({
   data,
   geneid,
+  toggleLegendOn,
 }: {
   data: OnTargetData;
   geneid: string;
+  toggleLegendOn: () => void;
 }) => {
   const [sortingOrder, setSortingOrder] = useState<"asc" | "desc">("asc");
   const filteredData = data.filter((d) => d.num_off_targets <= MAX_MISMATCHES);
@@ -58,36 +60,57 @@ export const OnTargetTable = ({
                 >
                   Spacer
                 </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Number of Mismatches
+                <th scope="col" className="px-3 py-3.5">
+                  <div className="flex gap-2 items-end">
+                    <span className="text-left text-sm font-semibold text-gray-900 ">
+                      Number of Mismatches
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toggleLegendOn();
+                      }}
+                    >
+                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                    </button>
+                  </div>
+                </th>
+                <th scope="col" className="px-3 py-3.5">
+                  <div className="flex gap-2 items-end ">
+                    <span className="text-left text-sm font-semibold text-gray-900 ">
+                      Edit Distance
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toggleLegendOn();
+                      }}
+                    >
+                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                    </button>
+                  </div>
+                </th>
+                <th scope="col" className=" px-3 py-3.5">
+                  <div className="flex">
+                    <span className="text-left text-sm font-semibold text-gray-900 ">
+                      Number of Off-Targets
+                    </span>
+                    <button
+                      type="button"
+                      className="btn-outline btn-xs btn self-end"
+                      onClick={() => {
+                        setSortingOrder(
+                          sortingOrder === "asc" ? "desc" : "asc"
+                        );
+                      }}
+                    >
+                      {sortingOrder === "asc" ? "▲" : "▼"}
+                    </button>
+                  </div>
                 </th>
                 <th
                   scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Edit Distance
-                </th>
-                <th
-                  scope="col"
-                  className="flex px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Number of Off-Targets
-                  <button
-                    type="button"
-                    className="btn-outline btn-xs btn self-end"
-                    onClick={() => {
-                      setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
-                    }}
-                  >
-                    {sortingOrder === "asc" ? "▲" : "▼"}
-                  </button>
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="px-3 py-3.5  text-left text-sm font-semibold text-gray-900"
                 >
                   Query Off Targets
                 </th>
@@ -137,7 +160,13 @@ export const OnTargetTable = ({
     </div>
   );
 };
-export const OffTargetTable = ({ data }: { data: OffTargetData }) => {
+export const OffTargetTable = ({
+  data,
+  toggleLegendOn,
+}: {
+  data: OffTargetData;
+  toggleLegendOn: () => void;
+}) => {
   return (
     <div className="flow-root">
       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -175,17 +204,35 @@ export const OffTargetTable = ({ data }: { data: OffTargetData }) => {
                 >
                   Spacer
                 </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Number of Mismatches
+                <th scope="col" className="px-3 py-3.5">
+                  <div className="flex gap-2 items-end">
+                    <span className="text-left text-sm font-semibold text-gray-900 ">
+                      Number of Mismatches
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toggleLegendOn();
+                      }}
+                    >
+                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                    </button>
+                  </div>
                 </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Edit Distance
+                <th scope="col" className="px-3 py-3.5">
+                  <div className="flex gap-2 items-end ">
+                    <span className="text-left text-sm font-semibold text-gray-900 ">
+                      Edit Distance
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toggleLegendOn();
+                      }}
+                    >
+                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                    </button>
+                  </div>
                 </th>
               </tr>
             </thead>
