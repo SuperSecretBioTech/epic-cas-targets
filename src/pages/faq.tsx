@@ -17,6 +17,11 @@ const faqs = [
       "Activation guides are located -1000bp/+200bp from the TSS and suppression guides are located -200bp/+1000bp from the TSS.",
   },
   {
+    question: "What can I do if the a target gene I'm interested in doesn't appear in the dropdown?",
+    answer:
+      "We are always looking to expand the utility of this tool. We welcome any feedback regarding gene targets the community would find useful.",
+  },
+  {
     question: "Is this tool capable of designing guides against genomes other than human?",
     answer:
       "While we currently only support guide design against the human genome (hg38), stay tuned as we plan to add additional genomes in the future to facilitate studies in model systems.",
