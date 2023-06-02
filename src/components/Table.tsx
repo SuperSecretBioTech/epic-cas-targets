@@ -34,7 +34,7 @@ export const OnTargetTable = ({
                   scope="col"
                   className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                 >
-                  Chromosome
+                  <span className="px-2">Chromosome</span>
                 </th>
                 <th
                   scope="col"
@@ -119,8 +119,8 @@ export const OnTargetTable = ({
             <tbody>
               {sortedData.map((datum) => (
                 <tr key={JSON.stringify(datum)} className="hover:bg-gray-100">
-                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                    {datum.chr}
+                  <td className="whitespace-py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                    <span className="px-2">{datum.chr}</span>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.start}
@@ -178,7 +178,7 @@ export const OffTargetTable = ({
                   scope="col"
                   className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                 >
-                  Chromosome
+                  <span className="px-2">Chromosome</span>
                 </th>
                 <th
                   scope="col"
@@ -238,9 +238,9 @@ export const OffTargetTable = ({
             </thead>
             <tbody>
               {data.map((datum) => (
-                <tr key={JSON.stringify(datum)}>
+                <tr key={JSON.stringify(datum)} className="hover:bg-gray-100">
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                    {datum.chr}
+                    <span className="px-2">{datum.chr}</span>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {datum.start}

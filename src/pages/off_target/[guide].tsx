@@ -73,7 +73,7 @@ const Results = () => {
         <section className="rounded-xl bg-white px-8 py-6">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
-              <h1 className="text-xl font-semibold text-gray-900">
+              <h1 className="text-xl font-semibold text-gray-900 px-2 ">
                 Guide: {guide} | {target_gene}
               </h1>
             </div>
