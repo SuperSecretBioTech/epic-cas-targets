@@ -42,7 +42,7 @@ export const Legend = ({
           className="flex w-full flex-col items-start justify-between rounded-xl bg-white py-6 text-start "
         >
           {columns.map((col) => (
-            <p key={`${col.name}`} className="text-sm text-zinc-700">
+            <p key={`${col.name}`} className="text-sm mb-2 text-zinc-700">
               <strong className="font-semibold">{col.name} </strong>:{" "}
               {col.description}
             </p>
