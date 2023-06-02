@@ -33,7 +33,7 @@ export const Legend = ({
             setOpen(!open);
           }}
         >
-          {open ? "▲" : "▼"}
+          {open ? "▲" : "..."}
         </button>
       </div>
       <div className="collapse-content">

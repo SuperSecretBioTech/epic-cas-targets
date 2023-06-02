@@ -90,7 +90,7 @@ export const OnTargetTable = ({
                     </button>
                   </div>
                 </th>
-                <th scope="col" className=" px-3 py-3.5">
+                <th scope="col" className=" px-1 py-3.5">
                   <div className="flex">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
                       Number of Off-Targets
@@ -98,6 +98,7 @@ export const OnTargetTable = ({
                     <button
                       type="button"
                       className="btn-outline btn-xs btn self-end"
+                      style={{width : '10px'}}
                       onClick={() => {
                         setSortingOrder(
                           sortingOrder === "asc" ? "desc" : "asc"
@@ -110,7 +111,7 @@ export const OnTargetTable = ({
                 </th>
                 <th
                   scope="col"
-                  className="px-3 py-3.5  text-left text-sm font-semibold text-gray-900"
+                  className="px-3 py-3.5 border-right:1px text-left text-sm font-semibold text-gray-900"
                 >
                   Query Off Targets
                 </th>
