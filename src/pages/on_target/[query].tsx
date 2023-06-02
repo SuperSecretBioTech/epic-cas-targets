@@ -41,17 +41,17 @@ const columns = [
   },
   {
     name: "Mismatch Count",
-    description: "Number of mismatches in spacer alignment to hg38 genome.",
+    description: "The total number of mismatches present in the spacer's alignment to the hg38 reference genome.",
   },
   {
     name: "Edit Distance",
     description:
-      "Minimal number of one-nucleotide edits (substitutions, insertions and deletions) needed to transform the spacer sequence into the alignment sequence.",
+      "The minimal number of one-nucleotide edits (substitutions, insertions and deletions) needed to transform the spacer sequence into the alignment sequence.",
   },
   {
     name: "Off-Target Count",
     description:
-      "Number of off-target alignments (with edit distance <= 3) with matching PAM sequence.",
+      "The number of off-target alignments (with edit distance <= 3) with matching PAM sequence.",
   },
   {
     name: "Query Off Targets",
