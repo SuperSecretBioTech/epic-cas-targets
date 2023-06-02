@@ -40,7 +40,8 @@ const columns = [
   },
   {
     name: "Mismatch Count",
-    description: "The total number of mismatches present in the spacer's alignment to the hg38 reference genome.",
+    description:
+      "The total number of mismatches present in the spacer's alignment to the hg38 reference genome.",
   },
   {
     name: "Edit Distance",
@@ -73,7 +74,7 @@ const Results = () => {
         <section className="rounded-xl bg-white px-8 py-6">
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
-              <h1 className="text-xl font-semibold text-gray-900 px-2 ">
+              <h1 className="px-2 text-xl font-semibold text-gray-900 ">
                 Guide: {guide} | {target_gene}
               </h1>
             </div>
@@ -142,7 +143,7 @@ const TableViz = ({
   }
   return (
     <section>
-      <span className="lg:-mt-8 mt-2 flex w-full justify-end">
+      <span className="mt-2 flex w-full justify-end lg:-mt-8">
         <DownloadButtons
           data={data}
           fileName={`${geneid}_${guide}_off_target`}

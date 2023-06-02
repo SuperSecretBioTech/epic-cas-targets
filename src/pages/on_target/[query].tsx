@@ -41,7 +41,8 @@ const columns = [
   },
   {
     name: "Mismatch Count",
-    description: "The total number of mismatches present in the spacer's alignment to the hg38 reference genome.",
+    description:
+      "The total number of mismatches present in the spacer's alignment to the hg38 reference genome.",
   },
   {
     name: "Edit Distance",
@@ -149,7 +150,7 @@ const TableViz = ({
 
   return (
     <section>
-      <span className="lg:-mt-8 mt-2 flex w-full justify-end">
+      <span className="mt-2 flex w-full justify-end lg:-mt-8">
         <DownloadButtons
           data={data.map((row) => {
             const x = { ...row, search: undefined };

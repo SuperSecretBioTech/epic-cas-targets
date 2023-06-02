@@ -61,7 +61,7 @@ export const OnTargetTable = ({
                   Spacer
                 </th>
                 <th scope="col" className="px-3 py-3.5">
-                  <div className="flex gap-2 items-end">
+                  <div className="flex items-end gap-2">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
                       Mismatch Count
                     </span>
@@ -71,12 +71,12 @@ export const OnTargetTable = ({
                         toggleLegendOn();
                       }}
                     >
-                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                      <InformationCircleIcon className="my-auto h-7 w-7 text-gray-400 hover:text-brand-700 lg:h-5 lg:w-5" />
                     </button>
                   </div>
                 </th>
                 <th scope="col" className="px-3 py-3.5">
-                  <div className="flex gap-2 items-end ">
+                  <div className="flex items-end gap-2 ">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
                       Edit Distance
                     </span>
@@ -86,7 +86,7 @@ export const OnTargetTable = ({
                         toggleLegendOn();
                       }}
                     >
-                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                      <InformationCircleIcon className="my-auto h-7 w-7 text-gray-400 hover:text-brand-700 lg:h-5 lg:w-5" />
                     </button>
                   </div>
                 </th>
@@ -97,7 +97,7 @@ export const OnTargetTable = ({
                     </span>
                     <button
                       type="button"
-                      className="btn-outline btn-xs btn self-end w-[10px]"
+                      className="btn-outline btn-xs btn w-[10px] self-end"
                       onClick={() => {
                         setSortingOrder(
                           sortingOrder === "asc" ? "desc" : "asc"
@@ -143,7 +143,7 @@ export const OnTargetTable = ({
                   <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.num_off_targets}
                   </td>
-                  <td className="border-l relative flex items-center py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                  <td className="relative flex items-center border-l py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                     {datum.num_off_targets > 0 ? (
                       <Link
                         href={`/off_target/${geneid}_${datum.spacer}`}
@@ -209,7 +209,7 @@ export const OffTargetTable = ({
                   Spacer
                 </th>
                 <th scope="col" className="px-3 py-3.5">
-                  <div className="flex gap-2 items-end">
+                  <div className="flex items-end gap-2">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
                       Number of Mismatches
                     </span>
@@ -219,12 +219,12 @@ export const OffTargetTable = ({
                         toggleLegendOn();
                       }}
                     >
-                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                      <InformationCircleIcon className="my-auto h-7 w-7 text-gray-400 hover:text-brand-700 lg:h-5 lg:w-5" />
                     </button>
                   </div>
                 </th>
                 <th scope="col" className="px-3 py-3.5">
-                  <div className="flex gap-2 items-end ">
+                  <div className="flex items-end gap-2 ">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
                       Edit Distance
                     </span>
@@ -234,7 +234,7 @@ export const OffTargetTable = ({
                         toggleLegendOn();
                       }}
                     >
-                      <InformationCircleIcon className="hover:text-brand-700 h-7 w-7 my-auto lg:h-5 lg:w-5 text-gray-400" />
+                      <InformationCircleIcon className="my-auto h-7 w-7 text-gray-400 hover:text-brand-700 lg:h-5 lg:w-5" />
                     </button>
                   </div>
                 </th>
