@@ -1,5 +1,4 @@
 import { classNames } from "@ninjha01/nitro-ui";
-import { useState } from "react";
 
 export const Legend = ({
   columns,
@@ -15,7 +14,7 @@ export const Legend = ({
       tabIndex={0}
       onClick={() => setOpen(!open)}
       className={classNames(
-        "rounded-box collapse w-full max-w-xl max-w-lg border border-base-300 bg-white px-6",
+        "rounded-box collapse w-full max-w-xl max-w-lg border border-base-300 bg-white px-4",
         open ? "collapse-open" : "collapse-close"
       )}
     >
@@ -42,7 +41,10 @@ export const Legend = ({
           className="flex w-full flex-col items-start justify-between rounded-xl bg-white py-6 text-start "
         >
           {columns.map((col) => (
-            <p key={`${col.name}`} className="mb-2 text-sm text-zinc-700">
+            <p
+              key={`${col.name}`}
+              className="mb-2 last:-mb-4 text-sm text-zinc-700"
+            >
               <strong className="font-semibold">{col.name} </strong>:{" "}
               {col.description}
             </p>
