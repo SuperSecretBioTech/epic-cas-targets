@@ -39,7 +39,7 @@ const columns = [
     description: "20bp spacer sequence.",
   },
   {
-    name: "Number of Mismatches",
+    name: "Mismatch Count",
     description: "Number of mismatches in spacer alignment to hg38 genome.",
   },
   {
