@@ -17,7 +17,7 @@ const About: NextPage = () => {
           <p className="mt-2 text-lg leading-8 text-gray-600">
             {`We designed a spacer design
             tool that allows users to retrieve genome-wide activation and
-            suppression guides for dCas molecules with TTTR PAMs.`}
+            suppression guides for nuclease inactivated dCas-Mini (Xu et al., 2021).`}
           </p>
         </div>
       </div>
