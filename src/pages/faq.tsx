@@ -18,6 +18,11 @@ const faqs = [
       "Activation guides are located -1000bp/+200bp from the TSS and suppression guides are located -200bp/+1000bp from the TSS.",
   },
   {
+    question: "How are off-targets computed?",
+    answer:
+      "20bp spacer sequences were sensitively mapped genome-wide using bowtie2 and then restricted to off-target sites containing TTTR within 5bp upstream of the spacer sequence (thus allowing for a single bp bulge). Final on-target spacer lists were sorted based on number of putative off-targets.",
+  },
+  {
     question:
       "What can I do if the a target gene I'm interested in doesn't appear?",
     answer:
@@ -25,20 +30,15 @@ const faqs = [
   },
   {
     question:
-      "Is this tool capable of designing guides against genomes other than human?",
-    answer:
-      "While we currently only support guide design against the human genome (hg38), stay tuned as we plan to add additional genomes in the future to facilitate studies in model systems.",
-  },
-  {
-    question: "How are off-targets computed?",
-    answer:
-      "20bp spacer sequences were sensitively mapped genome-wide using bowtie2 and then restricted to off-target sites containing TTTR within 5bp upstream of the spacer sequence (thus allowing for a single bp bulge). Final on-target spacer lists were sorted based on number of putative off-targets.",
-  },
-  {
-    question:
       "Why do you never see any off-target count values above 5000 for any given on-target result?",
     answer:
       "On-target results with associated off-target values above 5000 exist. We simply don't report them.",
+  },
+  {
+    question:
+      "Is this tool capable of designing guides against genomes other than human?",
+    answer:
+      "While we currently only support guide design against the human genome (hg38), stay tuned as we plan to add additional genomes in the future to facilitate studies in model systems.",
   },
   {
     question: "Do you support guide design against additional PAMs?",
