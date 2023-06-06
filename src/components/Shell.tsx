@@ -8,6 +8,7 @@ const navigation: NavItem[] = [
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "FAQ", href: "/faq" },
+  { name: "Terms and Conditions", href: "/terms" },
 ];
 
 interface NavItem {
