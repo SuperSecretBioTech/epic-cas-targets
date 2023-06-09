@@ -61,7 +61,7 @@ function FormInput() {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <div className="overflow-hidden shadow sm:rounded-md">
+            <div className="shadow sm:rounded-md">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
                   <div className="col-span-6 sm:col-span-4">
@@ -81,6 +81,7 @@ function FormInput() {
                         setSelectedGene(option.id as (typeof GENES)[number]);
                       }}
                       selectedOptionIdx={selectedOptionIdx}
+                      optionsContainerClassName="max-h-[300px] mt-4"
                     />
                   </div>
                   <div className="col-span-6 sm:col-span-3">

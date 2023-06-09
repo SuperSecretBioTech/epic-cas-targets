@@ -228,10 +228,10 @@
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.0.3.tgz#7db0adbea7b4aafdbe2a7745d2c7c048903876ad"
   integrity sha512-IAptmSqA7k4tQzaw2NAkoEjj3+Dz9ceuvlEHwYh770MMDL4V0ku2m+UHrmn5HUCEDHhgwwjg2nyf6728q2jr1w==
 
-"@ninjha01/nitro-ui@^0.0.73":
-  version "0.0.73"
-  resolved "https://registry.yarnpkg.com/@ninjha01/nitro-ui/-/nitro-ui-0.0.73.tgz#a2dc8c89e923e60b49385c191a43c14dade3c2f2"
-  integrity sha512-zd4GvrAZpXQ8iCGU3woHic+FXPljE6V9RhWkHwbt1yIDlGYSe5u371YPAhPXggZTNb1f+jDfOkVvVqgHp3opCg==
+"@ninjha01/nitro-ui@^0.0.74":
+  version "0.0.74"
+  resolved "https://registry.yarnpkg.com/@ninjha01/nitro-ui/-/nitro-ui-0.0.74.tgz#26782a318b851f82157c4663e3dd045baaca51f1"
+  integrity sha512-4n+i0RYJWPL7sSXxC3b00mjIq5i0Y9I+R4F1hlpjPePPpoNPz7tr1ETakeRx0F9EMVK/du3DpdbwwIVmWMwRGA==
   dependencies:
     "3dmol" "^1.8.0"
     "@headlessui/react" "^1.7.4"
