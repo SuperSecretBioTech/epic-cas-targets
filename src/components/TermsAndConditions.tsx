@@ -7,7 +7,7 @@ export type TermsConfig = {
 
 const TermsAndConditions = () => {
   return (
-    <div className="flex flex-col items-center space-x-4 rounded-xl bg-white pt-16 px-8">
+    <div className="rounded-xl border bg-white py-16 px-8">
       <Prose content={terms} />
     </div>
   );
@@ -29,7 +29,7 @@ export const Prose = (props: { content: string }) => {
   return (
     <article
       className={classNames(
-        "font-serif prose prose-slate prose-zinc h-full w-full md:prose-lg lg:prose-xl",
+        "prose-slate prose-zinc prose mx-auto h-full w-full font-serif md:prose-lg lg:prose-xl",
         aStyles,
         pStyles,
         hStyles,
