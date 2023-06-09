@@ -35,7 +35,7 @@ const requestSchema = z.union([
   z.object({
     target_gene: z.enum(GENES),
     effect: z.enum(["Activation", "Suppression"]),
-    query_type: z.literal("on_target"),
+    query_type: z.literal("on_target_rev"),
   }),
   z.object({
     guide: z.string().regex(/^[ACGT]+$/),
@@ -58,7 +58,7 @@ export default async function handler(
   const { query_type } = reqParsed.data;
   let payload = null;
   let parser = null;
-  if (query_type === "on_target") {
+  if (query_type === "on_target_rev") {
     const { target_gene, effect } = reqParsed.data;
     payload = {
       target_gene,
@@ -112,5 +112,6 @@ export default async function handler(
   if (!dataParsed.success) {
     return res.status(500).json({ error: "Invalid data recieved from lambda" });
   }
+
   return res.status(200).json(dataParsed.data);
 }

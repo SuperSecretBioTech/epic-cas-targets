@@ -18,7 +18,7 @@ export const useOnTarget = ({
         .post({
           target_gene,
           effect,
-          query_type: "on_target",
+          query_type: "on_target_rev",
         })
         .json();
     } catch (err: any) {

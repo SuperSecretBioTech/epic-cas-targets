@@ -67,7 +67,7 @@ def lambda_handler(event, context):
             "headers": {"Content-Type": "application/json"},
         }
 
-    if query_type == "on_target":
+    if query_type == "on_target_rev":
         print("ON TARGET QUERY")
         target_gene = body.get("target_gene", None)
         effect = body.get("effect", None)
@@ -80,7 +80,7 @@ def lambda_handler(event, context):
             }
         print(f"{target_gene=} {effect=}")
         sql_params = [{"name": "target_gene", "value": target_gene}]
-        query_str = f"SELECT * FROM on_target where geneid=:target_gene"
+        query_str = f"SELECT * FROM on_target_rev where geneid=:target_gene"
 
     elif query_type == "off_target":
         print("OFF TARGET QUERY")

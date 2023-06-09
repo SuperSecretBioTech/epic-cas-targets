@@ -90,6 +90,21 @@ export const OnTargetTable = ({
                     </button>
                   </div>
                 </th>
+                <th scope="col" className="px-3 py-3.5">
+                  <div className="flex items-end gap-2 ">
+                    <span className="text-left text-sm font-semibold text-gray-900 ">
+                      Distance to TSS
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toggleLegendOn();
+                      }}
+                    >
+                      <InformationCircleIcon className="my-auto h-7 w-7 text-gray-400 hover:text-brand-700 lg:h-5 lg:w-5" />
+                    </button>
+                  </div>
+                </th>
                 <th scope="col" className=" px-1 py-3.5">
                   <div className="flex">
                     <span className="text-left text-sm font-semibold text-gray-900 ">
@@ -140,6 +155,10 @@ export const OnTargetTable = ({
                   <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.edit_distance}
                   </td>
+                  <td className="px-3 py-4 text-sm text-gray-500">
+                    {datum.distance_to_tss}
+                  </td>
+
                   <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.num_off_targets}
                   </td>

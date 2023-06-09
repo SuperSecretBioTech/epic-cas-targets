@@ -50,6 +50,12 @@ const columns = [
       "The minimal number of one-nucleotide edits (substitutions, insertions and deletions) needed to transform the spacer sequence into the alignment sequence.",
   },
   {
+    name: "Distance to TSS",
+    description:
+      "Duis eu lacus dui. In posuere leo ut fringilla ornare. Proin a bibendum massa. Maecenas varius dui erat, in ultricies metus pharetra sed. Aenean vulputate id orci at varius.",
+  },
+
+  {
     name: "Off-Target Count",
     description:
       "The number of off-target alignments (with edit distance <= 3) with matching PAM sequence.",
