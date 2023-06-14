@@ -52,7 +52,7 @@ const columns = [
   {
     name: "Distance to TSS",
     description:
-      "Duis eu lacus dui. In posuere leo ut fringilla ornare. Proin a bibendum massa. Maecenas varius dui erat, in ultricies metus pharetra sed. Aenean vulputate id orci at varius.",
+      "The distance in base pairs between the spacer and the transcription start site.",
   },
 
   {
