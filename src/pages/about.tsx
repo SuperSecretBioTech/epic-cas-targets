@@ -1,3 +1,4 @@
+
 import {
   BugAntIcon,
   ChatBubbleLeftRightIcon,
@@ -5,6 +6,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { NextPage } from "next";
 import Shell from "../components/Shell";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const About: NextPage = () => {
   return (
@@ -19,7 +22,7 @@ const About: NextPage = () => {
             suppression guides for nuclease inactivated dCasMINI (Xu et al., 2021).
             This tool should facilitate epigenetic modulation studies involving dCasMINI (or other dCas molecules recognizing TTTR PAMs)
             by computing genome-wide activation/suppression guides that can be queried by users based on gene IDs. Compared to dCas9, 
-            dCasMINI is a fraction of the size, facilitating therapeutic delivery, and has a favorable off-target profile (Xin et al., 2022).`}
+            dCasMINI is a fraction of the size, facilitating therapeutic delivery, and has a favorable off-target profile [(Xin et al., 2022)](https://www.nature.com/articles/s41467-022-33346-1#article-info).`}
           </p>
         </div>
       </div>
