@@ -18,7 +18,8 @@ const About: NextPage = () => {
             {`We designed a spacer design tool that allows users to retrieve genome-wide activation and
             suppression guides for nuclease inactivated dCasMINI (Xu et al., 2021).
             This tool should facilitate epigenetic modulation studies involving dCasMINI (or other dCas molecules recognizing TTTR PAMs)
-            by computing genome-wide activation/suppression guides that can be queried by users based on gene IDs.`}
+            by computing genome-wide activation/suppression guides that can be queried by users based on gene IDs. Compared to dCas9, 
+            dCasMINI is a fraction of the size, facilitating therapeutic delivery, and has a favorable off-target profile (Xin et al., 2022).`}
           </p>
         </div>
       </div>
