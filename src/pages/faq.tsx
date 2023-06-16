@@ -1,9 +1,6 @@
-import {
-  BugAntIcon,
-  ChatBubbleLeftRightIcon,
-  ComputerDesktopIcon,
-} from "@heroicons/react/24/outline";
 import { NextPage } from "next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Shell from "../components/Shell";
 const faqs = [
   {
@@ -45,6 +42,10 @@ const faqs = [
     answer:
       "Presently we only offer guide design against TTTR PAMs suitable for studies involving dCasMINI (Xu et al., 2021).",
   },
+  {
+    question: "Can we add hyperlinks?",
+    answer: "Yes! Here's [one](https://www.nitro.bio/).",
+  },
 ];
 const FAQ: NextPage = () => {
   return (
@@ -64,8 +65,10 @@ const FAQ: NextPage = () => {
                     <dt className="text-base font-semibold leading-7 text-gray-900">
                       {faq.question}
                     </dt>
-                    <dd className="mt-2 text-base leading-7 text-gray-600">
-                      {faq.answer}
+                    <dd className="mt-2 text-base leading-7 text-gray-600 prose-a:font-semibold prose-a:text-brand-800 prose-a:hover:underline">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {faq.answer}
+                      </ReactMarkdown>
                     </dd>
                   </div>
                 ))}
