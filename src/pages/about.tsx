@@ -17,12 +17,14 @@ const About: NextPage = () => {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             About
           </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            {`We designed a spacer design tool that allows users to retrieve genome-wide activation and
-            suppression guides for nuclease inactivated dCasMINI [(Xu et al., 2021)](https://www.cell.com/molecular-cell/pdfExtended/S1097-2765(21)00648-1).
-            This tool should facilitate epigenetic modulation studies involving dCasMINI (or other dCas molecules recognizing TTTR PAMs)
-            by computing genome-wide activation/suppression guides that can be queried by users based on gene IDs. Compared to dCas9, 
-            dCasMINI is a fraction of the size, facilitating therapeutic delivery, and has a favorable off-target profile [(Xin et al., 2022)](https://www.nature.com/articles/s41467-022-33346-1#article-info).`}
+          <p className="mt-2 text-lg leading-8 text-gray-600 prose-a:font-semibold prose-a:text-brand-800 prose-a:hover:underline">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {`We designed a spacer design tool that allows users to retrieve genome-wide activation and
+              suppression guides for nuclease inactivated dCasMINI [(Xu et al., 2021)](https://www.cell.com/molecular-cell/pdfExtended/S1097-2765(21)00648-1).
+              This tool should facilitate epigenetic modulation studies involving dCasMINI (or other dCas molecules recognizing TTTR PAMs)
+              by computing genome-wide activation/suppression guides that can be queried by users based on gene IDs. Compared to dCas9, 
+              dCasMINI is a fraction of the size, facilitating therapeutic delivery, and has a favorable off-target profile [(Xin et al., 2022)](https://www.nature.com/articles/s41467-022-33346-1#article-info).`}
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
           </p>
         </div>
       </div>
