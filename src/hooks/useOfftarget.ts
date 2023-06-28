@@ -4,10 +4,12 @@ import { z } from "zod";
 import { offTargetOutputSchema } from "../schemas/dataSchema";
 
 export const useOffTarget = ({
-  guide,
+  pos_guide,
+  neg_guide,
   target_gene,
 }: {
-  guide: string;
+  pos_guide: string;
+  neg_guide: string;
   target_gene: string;
 }) => {
   const fetchFunc = async () => {
@@ -15,7 +17,8 @@ export const useOffTarget = ({
 
     const rawData = await wretch(url)
       .post({
-        guide,
+        pos_guide,
+        neg_guide,
         target_gene,
         query_type: "off_target",
       })
@@ -27,7 +30,7 @@ export const useOffTarget = ({
     }
     return parsed.data;
   };
-  return useQuery(["dataQuery", guide], fetchFunc, {
+  return useQuery(["dataQuery", pos_guide, neg_guide], fetchFunc, {
     refetchOnWindowFocus: false,
   });
 };

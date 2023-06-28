@@ -147,7 +147,7 @@ export const OnTargetTable = ({
                     {datum.strand}
                   </td>
                   <td className="px-3 py-4 text-sm text-gray-500">
-                    {datum.spacer}
+                    {datum.pos_guide}
                   </td>
                   <td className="px-3 py-4 text-sm text-gray-500">
                     {datum.num_mismatches}
@@ -165,7 +165,7 @@ export const OnTargetTable = ({
                   <td className="relative flex items-center border-l py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                     {datum.num_off_targets > 0 ? (
                       <Link
-                        href={`/off_target/${geneid}_${datum.spacer}`}
+                        href={`/off_target/${geneid}_${datum.pos_guide}_${datum.neg_guide}`}
                         className="text-brand-600 hover:text-brand-900"
                       >
                         Search

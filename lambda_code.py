@@ -36,22 +36,6 @@ config = Config(connect_timeout=5, read_timeout=10)  # 10 second time out on rea
 client_redshift = session.client("redshift-data", config=config)
 
 
-def reverse_complement(seq):
-    base_pairs = {
-        "A": "T",
-        "T": "A",
-        "G": "C",
-        "C": "G",
-        "a": "t",
-        "t": "a",
-        "g": "c",
-        "c": "g",
-        "N": "N",
-        "n": "n",
-    }
-    return "".join([base_pairs[base] for base in seq[::-1]])
-
-
 def lambda_handler(event, context):
     print("Entered lambda_handler")
     # Parse the POST payload
@@ -67,7 +51,7 @@ def lambda_handler(event, context):
             "headers": {"Content-Type": "application/json"},
         }
 
-    if query_type == "on_target_rev":
+    if query_type == "on_target_rev_2":
         print("ON TARGET QUERY")
         target_gene = body.get("target_gene", None)
         effect = body.get("effect", None)
@@ -80,27 +64,26 @@ def lambda_handler(event, context):
             }
         print(f"{target_gene=} {effect=}")
         sql_params = [{"name": "target_gene", "value": target_gene}]
-        query_str = f"SELECT * FROM on_target_rev where geneid=:target_gene"
+        query_str = f"SELECT * FROM on_target_rev2 where geneid=:target_gene"
 
     elif query_type == "off_target":
         print("OFF TARGET QUERY")
-        guide = body.get("guide", None)
+        pos_guide = body.get("pos_guide", None)
+        neg_guide = body.get("neg_guide", None)
         target_gene = body.get("target_gene", None)
-        if guide is None or target_gene is None:
-            error_msg = f"guide and target_gene are required post parameters. Received {guide=} {target_gene=}"
+        if pos_guide is None or neg_guide is None or target_gene is None:
+            error_msg = f"pos_guide, neg_guide, and target_gene are required post parameters. Received {pos_guide=} {neg_guide=} {target_gene=}"
             return {
                 "statusCode": 400,
                 "body": json.dumps({"error": error_msg}),
                 "headers": {"Content-Type": "application/json"},
             }
-        print(f"{guide=}")
-        reverse_complement_guide = reverse_complement(guide)
         sql_params = [
-            {"name": "spacer", "value": guide},
-            {"name": "reverse_spacer", "value": reverse_complement_guide},
+            {"name": "pos_guide", "value": pos_guide},
+            {"name": "neg_guide", "value": neg_guide},
             {"name": "target_gene", "value": target_gene},
         ]
-        query_str = f"SELECT * FROM off_target WHERE (spacer=:spacer OR spacer=:reverse_spacer) AND geneid=:target_gene"
+        query_str = f"SELECT * FROM off_target WHERE (spacer=:pos_guide OR spacer=:neg_guide) AND geneid=:target_gene"
 
     else:
         error_msg = f"Invalid query_type. Received {query_type=}"

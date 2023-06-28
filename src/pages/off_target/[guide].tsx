@@ -9,11 +9,15 @@ import { useOffTarget } from "../../hooks/useOfftarget";
 
 const slugSchema = z
   .string()
-  .regex(/[0-9A-Z-]_[ATCG]+$/)
+  .regex(/[0-9A-Z-]_[ATCG]+_[ATCG]+$/)
   .transform((data) => {
     return z
-      .tuple([z.string(), z.string()])
-      .transform((data) => ({ target_gene: data[0], guide: data[1] }))
+      .tuple([z.string(), z.string(), z.string()])
+      .transform((data) => ({
+        target_gene: data[0],
+        pos_guide: data[1],
+        neg_guide: data[2],
+      }))
       .parse(data.split("_"));
   });
 
@@ -62,7 +66,7 @@ const Results = () => {
     return <Shell>Invalid Guide: {rawSlug}</Shell>;
   }
 
-  const { target_gene, guide } = slug.data;
+  const { target_gene, pos_guide, neg_guide } = slug.data;
 
   return (
     <Shell>
@@ -73,14 +77,24 @@ const Results = () => {
 
         <section className="rounded-xl bg-white px-8 py-6">
           <div className="sm:flex sm:items-center">
-            <div className="sm:flex-auto">
+            <div className="sm:flex-auto ">
               <h1 className="px-2 text-xl font-semibold text-gray-900 ">
-                Guide: {guide} | {target_gene}
+                {target_gene}
               </h1>
+
+              <h2 className="grid content-center px-2  text-xs font-semibold text-gray-500 ">
+                Pos Guide:{" "}
+                <span className=" font-mono font-normal">{pos_guide}</span>
+              </h2>
+              <h2 className="grid content-center px-2  text-xs font-semibold text-gray-500 ">
+                Neg Guide:{" "}
+                <span className=" font-mono font-normal">{neg_guide}</span>
+              </h2>
             </div>
           </div>
           <TableViz
-            guide={guide}
+            pos_guide={pos_guide}
+            neg_guide={neg_guide}
             geneid={target_gene}
             toggleLegendOpen={() => setLegendOpen(true)}
           />
@@ -91,16 +105,19 @@ const Results = () => {
 };
 
 const TableViz = ({
-  guide,
+  pos_guide,
+  neg_guide,
   geneid,
   toggleLegendOpen,
 }: {
-  guide: string;
+  pos_guide: string;
+  neg_guide: string;
   geneid: string;
   toggleLegendOpen: () => void;
 }) => {
   const { data, error, isFetching } = useOffTarget({
-    guide,
+    pos_guide,
+    neg_guide,
     target_gene: geneid,
   });
   if (error) {
@@ -146,7 +163,7 @@ const TableViz = ({
       <span className="mt-2 flex w-full justify-end lg:-mt-8">
         <DownloadButtons
           data={data}
-          fileName={`${geneid}_${guide}_off_target`}
+          fileName={`${geneid}_${pos_guide}_${neg_guide}_off_target`}
         />
       </span>
       <OffTargetTable data={data} toggleLegendOn={toggleLegendOpen} />

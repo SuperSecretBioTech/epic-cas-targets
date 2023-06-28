@@ -12,6 +12,8 @@ export const onTargetOutputSchema = z.object({
   num_off_targets: z.number(),
   search: z.string(),
   distance_to_tss: z.number(),
+  pos_guide: z.string().regex(/^[ATCGatcg]+$/),
+  neg_guide: z.string().regex(/^[ATCGatcg]+$/),
 });
 
 export const onTargetSchema = z
@@ -47,6 +49,8 @@ export const onTargetSchema = z
       z.object({ booleanValue: z.boolean() }),
       z.object({ doubleValue: z.number() }),
       z.object({ doubleValue: z.number() }),
+      z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
+      z.object({ stringValue: z.string().regex(/^[ATCGatcg]+$/) }),
     ])
   )
   .transform((data) =>
@@ -63,6 +67,8 @@ export const onTargetSchema = z
         num_off_targets: datum[11].doubleValue,
         search: `/off_target/${datum[4].stringValue.toUpperCase()}`, // uses the spacer as the search term,
         distance_to_tss: datum[12].doubleValue,
+        pos_guide: datum[13].stringValue,
+        neg_guide: datum[14].stringValue,
       })
     )
   );
