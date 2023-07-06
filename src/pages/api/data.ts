@@ -50,7 +50,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const url =
-    "https://vehbuyav4p4ats5tgvs7w7ruty0mixag.lambda-url.us-west-2.on.aws/";
+    "https://s2zz4oatrmrxmorhhxzau5iflq0hejqj.lambda-url.us-west-2.on.aws/";
   const reqParsed = requestSchema.safeParse(req.body);
   if (!reqParsed.success) {
     return res.status(400).json({ error: reqParsed.error });
